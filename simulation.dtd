@@ -1,0 +1,12 @@
+<!ELEMENT simulation (name,title,local,date,sub-title,resume,body)>
+<!ELEMENT grid (#PCDATA)>
+<!ELEMENT initialpoint (#PCDATA)>
+<!ELEMENT finalpoint (#PCDATA)>
+<!ELEMENT specialcostzones (#PCDATA)>
+<!ELEMENT zone (#PCDATA)>
+<!ELEMENT obstacles (#PCDATA)>
+<!ELEMENT obstacle (#PCDATA)>
+<!ELEMENT events (#PCDATA)>
+<!ELEMENT death (#PCDATA)>
+<!ELEMENT reproduction (#PCDATA)>
+<!ELEMENT move (#PCDATA)>

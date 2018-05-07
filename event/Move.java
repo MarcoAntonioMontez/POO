@@ -1,7 +1,9 @@
 package event;
 
 import board.Individual;
+import numberGen.*;
 import java.util.*;
+
 
 public class Move extends AbsEvent{
 	static int parameter;
@@ -37,8 +39,9 @@ public class Move extends AbsEvent{
 	
 	@Override
 	public float getNextTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		float meanValue=0;
+		meanValue=(float)parameter*(1-(float)Math.log(this.individual.getComfort()));
+		return randNum.expRandom(meanValue);
 	}
 	
 	public boolean initCheck() {

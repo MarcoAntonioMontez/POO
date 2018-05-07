@@ -37,4 +37,7 @@ public class Reproduction extends AbsEvent{
 		return "Reproduction [time=" + time + "] Parameter=["+parameter+"]\n" + individual;
 	}
 
+	public String toStringMini() {
+		return "Reproduction [time=" + time + "]" + individual.myPoint.toString();
+	}
 }

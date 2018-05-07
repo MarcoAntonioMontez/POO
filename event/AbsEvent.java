@@ -22,6 +22,8 @@ public abstract class AbsEvent implements Comparable<AbsEvent>, IEvent {
 	
 	abstract public float getNextTime();
 	
+	abstract public String toStringMini();
+	
 	abstract int getParameter();
 	
 	public static void setSim(Simulation simul) {
@@ -37,6 +39,8 @@ public abstract class AbsEvent implements Comparable<AbsEvent>, IEvent {
 	public String toString() {
 		return "AbsEvent [time=" + time + "]";
 	}
+	
+
 	
 	@Override
 	public int compareTo(AbsEvent event) {

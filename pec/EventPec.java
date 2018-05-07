@@ -46,6 +46,12 @@ public class EventPec implements IPEC<AbsEvent>{
 	
 	@Override
 	public String toString() {
+//		String str="";
+//		for(AbsEvent event : pec) {
+//			str=str + event.toStringMini();
+//		}
+		
+		
 		return "EventPec numElements=" + numElements + "\n list=" + pec ;
 	}
 	

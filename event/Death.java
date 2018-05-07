@@ -41,6 +41,8 @@ public class Death extends AbsEvent{
 		return "Death [time=" + time + "] Parameter=["+parameter+"]\n" + individual ;
 	}
 	
-	
+	public String toStringMini() {
+		return "Death [time=" + time + "]" + individual.myPoint.toString();
+	}
 
 }

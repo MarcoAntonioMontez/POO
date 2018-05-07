@@ -137,34 +137,20 @@ public class Main extends DefaultHandler{
 		 daviv.addPointPath("left");
 		 System.out.print("\n\nPai 	"+daviv.toString());
 		 
-		 //Daviv tem um novo filho DavivSon
-		 Individual davivSon=new Individual(daviv);
-		 System.out.print("\n\nFilho 	"+davivSon.toString());
-		 
-		 //Daviv Son vai para a esquerda
-		 davivSon.addPointPath("left");
-		 System.out.print("\n\nFilho 	"+davivSon.toString());
-		 
-		 davivSon.addPointPath("down");
-		 
-		 davivSon.addPointPath("down");
-		 
-		 //Teste da criação dos events
-		 AbsEvent death= new Death(3,daviv);
-		 System.out.print("\n\nDeath " + death.toString());
-		 
-		 AbsEvent reproduction= new Reproduction(2,daviv);
-		 System.out.print("\n\nReproduction " + reproduction.toString());
-		 
-		 AbsEvent move= new Move(1,davivSon);
+		 AbsEvent move= new Move(0,daviv);
 		 System.out.print("\n\nMove " + move.toString());
+		 
+		 
+		 EventPec pec = sim.getEventPec();
+		 System.out.print("\n\nPec " + pec.toString());
 		 
 		 move.simulateEvent();
 		 System.out.print("\n\nMove " + move.toString());
+		 System.out.print("\n\nPec " + pec.toString());
 		 
-		 for (int i=0; i<5; i++) {
-			 System.out.println("\n"+randNum.expRandom(2));
-		}
+		 AbsEvent currEvent = sim.getNextEvent();
+		 currEvent.simulateEvent();
+		 System.out.print("\n\nPec " + pec.toString());
 		 
 		}	
 }

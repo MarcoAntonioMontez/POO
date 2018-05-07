@@ -36,6 +36,10 @@ public class Simulation {
 		this.initEvents(initObject);	
 	}
 	
+	public AbsEvent getNextEvent() {
+		return pec.removeFirst();
+	}
+	
 	private void initEvents(InitObject initObject) {
 		AbsEvent.setSim(this);	
 		Death.setParameter(initObject.death);

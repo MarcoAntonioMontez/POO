@@ -34,14 +34,15 @@ public class Move extends AbsEvent{
 		//Calcular o time do proximo event
 		//Por o novo move na pec
 		
-		//float newTime=;
+		time=this.getNextTime();
+		this.sim.getEventPec().add(this);
 	}
 	
 	@Override
 	public float getNextTime() {
 		float meanValue=0;
 		meanValue=(float)parameter*(1-(float)Math.log(this.individual.getComfort()));
-		return randNum.expRandom(meanValue);
+		return this.time+randNum.expRandom(meanValue);
 	}
 	
 	public boolean initCheck() {
@@ -60,6 +61,10 @@ public class Move extends AbsEvent{
 	@Override
 	public String toString() {
 		return "Move [time=" + time + "] Parameter=["+parameter+"]\n"+ individual;
+	}
+	
+	public String toStringMini() {
+		return "Move [time=" + time + "]" + individual.myPoint.toString();
 	}
 
 

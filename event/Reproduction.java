@@ -1,6 +1,7 @@
 package event;
 
 import board.Individual;
+import numberGen.randNum;
 
 public class Reproduction extends AbsEvent{
 	static int parameter;
@@ -20,8 +21,9 @@ public class Reproduction extends AbsEvent{
 	
 	@Override
 	public float getNextTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		float meanValue=0;
+		meanValue=(float)parameter*(1-(float)Math.log(this.individual.getComfort()));
+		return randNum.expRandom(meanValue);
 	}
 	
 	public static void setParameter(int par) {

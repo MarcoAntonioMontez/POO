@@ -1,6 +1,7 @@
 package event;
 
 import board.*;
+import numberGen.randNum;
 import pec.*;
 import simulation.*;
 
@@ -17,8 +18,9 @@ public class Death extends AbsEvent{
 	
 	@Override
 	public float getNextTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		float meanValue=0;
+		meanValue=(float)parameter*(1-(float)Math.log((1-this.individual.getComfort())));
+		return randNum.expRandom(meanValue);
 	}
 	
 	public boolean initCheck(){

@@ -40,6 +40,57 @@ public class Simulation {
 		return pec.removeFirst();
 	}
 	
+	public String individualListToString(){	
+		if(individualList.isEmpty()) {
+			return null;
+		}		
+		String str="";
+		for(Individual indiv:individualList) {
+			 str=str + "\n" + indiv.myPoint.verticeToString() + "\t confort " + indiv.getComfort(); 
+		 }
+		return str;
+	}
+	
+	public void addIndividual(Individual individual) {
+		individualList.add(individual);
+	}
+	
+	public void epidemic() {
+		float minConfortToSurvive=0.45f;
+		 Individual aux;
+		
+		Comparator<Individual> confortComparator = new Comparator<Individual>(){
+			@Override
+			public int compare(Individual I1, Individual I2) {
+				if(I1.getComfort()<=I2.getComfort())
+					return 1;
+				else
+					return -1;
+	        }
+		};
+		 Collections.sort(this.individualList, confortComparator);
+		 
+		 LinkedList<Individual> tempList = new LinkedList<Individual>();
+		 
+		 int counter=0;
+		 while(counter<5 && !individualList.isEmpty()) {
+
+			 tempList.add(individualList.removeFirst());
+			 counter++;
+		 }
+		 
+		 while(!individualList.isEmpty()) {
+			 aux=individualList.removeFirst();
+			 if(aux.getComfort() >= minConfortToSurvive) {
+				 tempList.addLast(aux);
+			 }
+			 else {
+				 pec.removeEventsOfIndividual(aux);
+			 }
+		 }
+		 individualList=tempList;
+	}
+	
 	private void initEvents(InitObject initObject) {
 		AbsEvent.setSim(this);	
 		Death.setParameter(initObject.death);

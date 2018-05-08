@@ -118,12 +118,8 @@ public class Main extends DefaultHandler{
 		 int initPop=3;
 		 int k=1;
 		 Simulation sim = new Simulation(initObject,initPop,k);
+		 EventPec pec = sim.getEventPec();
 		 //System.out.print(sim.grid.toString());
-		 
-		 
-		 //Proximos Passos!!
-		 
-		 //1- Testar a inserção ordenada e remocao dos absEvents na Pec! pec.add(), pec.removeFirst().
 		 
 		 //2- Implementar os methods simulate Event dos 3 eventos (Death.move,reprod)
 		 //O death e reprod afetam a lista de indiv da Sim
@@ -132,25 +128,72 @@ public class Main extends DefaultHandler{
 		 //Daviv is born on point (5,1) 
 		 Individual daviv = new Individual(sim,sim.grid.pointArray[4][0]); 
 		 System.out.print("\n\nPai 	"+daviv.toString());
+		 
+		 Individual I_1 = new Individual(daviv);
+		 I_1.addPointPath("left");
+		 System.out.print("\n\nI_1 " + I_1.toString());
+		 sim.addIndividual(I_1);
+		 
+		 Individual I_2 = new Individual(I_1);
+		 I_2.addPointPath("left");
+		 System.out.print("\n\nI_2 " + I_2.toString());
+		 sim.addIndividual(I_2);
+		 
+		 Individual I_3 = new Individual(I_2);
+		 I_3.addPointPath("down");
+		 System.out.print("\n\nI_3 " + I_3.toString());
+		 sim.addIndividual(I_3);
+		 
+		 Individual I_4 = new Individual(I_3);
+		 I_4.addPointPath("down");
+		 System.out.print("\n\nI_4 " + I_4.toString());
+		 sim.addIndividual(I_4);
+		 
+		 Individual I_5 = new Individual(I_4);
+		 I_5.addPointPath("down");
+		 System.out.print("\n\nI_5 " + I_5.toString());
+		 sim.addIndividual(I_5);
+		 
+		 Individual I_6 = new Individual(I_5);
+		 I_6.addPointPath("right");
+		 System.out.print("\n\nI_6 " + I_6.toString());
+		 sim.addIndividual(I_6);
+		 
+		 Individual I_7 = new Individual(I_6);
+		 I_7.addPointPath("right");
+		 System.out.print("\n\nI_6 " + I_7.toString());
+		 sim.addIndividual(I_7);
+		 
+		 AbsEvent move_1=new Move(0.0f,I_1);
+		 pec.add(move_1);
+		 pec.add(new Move(1.0f,I_2));
+		 pec.add(new Move(2.0f,I_3));
+		 
 
-		 //Daviv vai para o ponto á esquerda
-		 daviv.addPointPath("left");
-		 System.out.print("\n\nPai 	"+daviv.toString());
+		 System.out.print("\n\nIndivList before epidemic \n " + sim.individualListToString());
+		 System.out.print("\n\nEventPec before epidemic \n " + pec.miniToString());
+		 sim.epidemic();
+		 System.out.print("\n\nIndivList after epidemic\n " + sim.individualListToString());
+		 System.out.print("\n\nEventPec after epidemic \n " + pec.miniToString());
 		 
-		 AbsEvent move= new Move(0,daviv);
-		 System.out.print("\n\nMove " + move.toString());
-		 
-		 
-		 EventPec pec = sim.getEventPec();
-		 System.out.print("\n\nPec " + pec.toString());
-		 
-		 move.simulateEvent();
-		 System.out.print("\n\nMove " + move.toString());
-		 System.out.print("\n\nPec " + pec.toString());
-		 
-		 AbsEvent currEvent = sim.getNextEvent();
-		 currEvent.simulateEvent();
-		 System.out.print("\n\nPec " + pec.toString());
+//		 AbsEvent death= new Death(1.0f,daviv);
+//		 System.out.print("\n\nDeath " + death.toString());
+//		 pec.add(death);
+//
+//		 //Daviv vai para o ponto á esquerda
+//		 daviv.addPointPath("left");
+//		 System.out.print("\n\nPai 	"+daviv.toString());
+//		 
+//		 AbsEvent move= new Move(0,daviv);
+//		 System.out.print("\n\nMove " + move.toString());
+//		 
+//		 move.simulateEvent();
+//		 System.out.print("\n\nMove " + move.toString());
+//		 System.out.print("\n\nPec " + pec.toString());
+//		 
+//		 AbsEvent currEvent = sim.getNextEvent();
+//		 currEvent.simulateEvent();
+//		 System.out.print("\n\nPec " + pec.toString());
 		 
 		}	
 }

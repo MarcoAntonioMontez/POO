@@ -26,13 +26,17 @@ public abstract class AbsEvent implements Comparable<AbsEvent>, IEvent {
 	
 	abstract int getParameter();
 	
+	public Individual getIndividual() {
+		return this.individual;
+	}
+	
 	public static void setSim(Simulation simul) {
 		sim=simul;
 		pec=sim.getEventPec();
 	}
 	
 	public float getTime() {
-		return time;
+		return this.time;
 	}
 	
 	@Override

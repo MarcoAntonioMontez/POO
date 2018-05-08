@@ -38,6 +38,6 @@ public class Reproduction extends AbsEvent{
 	}
 
 	public String toStringMini() {
-		return "Reproduction [time=" + time + "]" + individual.myPoint.toString();
+		return "Reproduction [time=" + time + "]  " + individual.myPoint.verticeToString();
 	}
 }

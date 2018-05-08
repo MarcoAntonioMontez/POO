@@ -17,7 +17,7 @@ public class Simulation {
 	int currentEvent;
 	EventPec pec;
 	int numIndividuals;
-	LinkedList<Individual> individualList = new LinkedList<Individual>();
+	public LinkedList<Individual> individualList = new LinkedList<Individual>();
 	Individual bestIndividual;
 	
 	public Simulation(InitObject initObject, int initPopul, int k){
@@ -44,7 +44,7 @@ public class Simulation {
 		AbsEvent.setSim(this);	
 		Death.setParameter(initObject.death);
 		Move.setParameter(initObject.move);
-		Reproduction.setParameter(initObject.reproduction);
+		Reproduction.setParameter(initObject.reproduction, initObject.move, initObject.death);
 	}
 	
 	public EventPec getEventPec() {

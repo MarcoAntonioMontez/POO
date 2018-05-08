@@ -25,12 +25,21 @@ public class Individual implements Cloneable{
 	}
 	
 	public Individual(Individual individual) {
+		int i=0;
+		double size = individual.path.size();
+		size = size * 0.9;
 		this.sim=individual.sim;
 			Stack<Point> newPath = new Stack<Point>();
+			
 			for(Point p : individual.path) {
-			    newPath.add(p);
-			    this.path=newPath;
+				newPath.add(p);
+				i++;
+				if(i == Math.ceil(size)) {
+					break;
+				}
 			}
+		
+		this.path=newPath;
 		this.comfort = individual.getComfort();
 		this.costPath = individual.getCostPath();
 		this.myPoint=individual.myPoint;

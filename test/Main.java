@@ -140,7 +140,6 @@ public class Main extends DefaultHandler{
 		 AbsEvent move= new Move(0,daviv);
 		 System.out.print("\n\nMove " + move.toString());
 		 
-		 
 		 EventPec pec = sim.getEventPec();
 		 System.out.print("\n\nPec " + pec.toString());
 		 
@@ -150,6 +149,33 @@ public class Main extends DefaultHandler{
 		 
 		 AbsEvent currEvent = sim.getNextEvent();
 		 currEvent.simulateEvent();
+		 System.out.print("\n\nPec " + pec.toString());
+		// -----------------------------------------------------------
+		 AbsEvent reproduction= new Reproduction(0,daviv);
+		 
+		 AbsEvent move1= new Move(0,daviv);
+		 move1.simulateEvent();
+		 
+		 AbsEvent move2= new Move(0,daviv);
+		 move2.simulateEvent();
+		 
+		 AbsEvent move3= new Move(0,daviv);
+		 move3.simulateEvent();
+		 
+		 AbsEvent move4= new Move(0,daviv);
+		 move4.simulateEvent();
+		 
+		 AbsEvent move5= new Move(0,daviv);
+		 move5.simulateEvent();
+		 
+		 AbsEvent move6= new Move(0,daviv);
+		 move6.simulateEvent();
+		 
+		 
+		 
+		 reproduction.simulateEvent();
+		 
+		 System.out.print("\n\nTime 	"+ reproduction.getNextTime());
 		 System.out.print("\n\nPec " + pec.toString());
 		 
 		}	

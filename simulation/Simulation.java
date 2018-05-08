@@ -95,7 +95,7 @@ public class Simulation {
 		AbsEvent.setSim(this);	
 		Death.setParameter(initObject.death);
 		Move.setParameter(initObject.move);
-		Reproduction.setParameter(initObject.reproduction, initObject.move, initObject.death);
+		Reproduction.setParameter(initObject.reproduction);
 	}
 	
 	public EventPec getEventPec() {
@@ -331,4 +331,9 @@ public class Simulation {
 			return nearEdges;	
 		}
 	}	
+	
+	public void removeAndUpdateList(Individual individual) {
+		this.individualList.remove(individual);
+		this.numIndividuals--;
+	}
 }

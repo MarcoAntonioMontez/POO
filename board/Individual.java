@@ -25,25 +25,32 @@ public class Individual implements Cloneable{
 	}
 	
 	public Individual(Individual individual) {
-		int i=0;
-		double size = individual.path.size();
-		size = size * 0.9;
 		this.sim=individual.sim;
 		Stack<Point> newPath = new Stack<Point>();
-			
 		for(Point p : individual.path) {
-				newPath.add(p);
-				i++;
-				if(i == Math.ceil(size)) {
-					break;
-				}
+		    newPath.add(p);
+		    this.path=newPath;
 		}
-		
-		this.path=newPath;
 		this.comfort = individual.getComfort();
 		this.costPath = individual.getCostPath();
 		this.myPoint=individual.myPoint;
 		this.lengthPath=individual.getLengthPath();
+}
+	
+	public Individual createSon() {
+		int i=0;
+		Individual individual = new Individual(this);
+		
+		double size = individual.lengthPath;
+		size = Math.floor(size*0.9 + 0.1*this.getComfort());
+		this.sim=individual.sim;
+
+		for(i=0; i< (individual.lengthPath-size)+1;i++)
+			individual.removePointPath();
+		
+		System.out.print("\n\nFather=" + this.toString()+"\n\nson= " + individual.toString()+"\n\n");
+		
+		return individual;
 	}
 	
 	public Queue<String> getValidEdges(){

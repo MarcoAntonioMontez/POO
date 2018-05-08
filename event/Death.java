@@ -13,13 +13,13 @@ public class Death extends AbsEvent{
 	}
 	
 	public void simulateEvent() {
-		
+		sim.removeAndUpdateList(this.getIndividual());
 	}
 	
 	@Override
 	public float getNextTime() {
 		float meanValue=0;
-		meanValue=(float)parameter*(1-(float)Math.log((1-this.individual.getComfort())));
+		meanValue=(float)parameter*(1-(float)Math.log((1.0f-(float)this.individual.getComfort())));
 		return randNum.expRandom(meanValue);
 	}
 	

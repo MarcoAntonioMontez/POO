@@ -129,6 +129,8 @@ public class Main extends DefaultHandler{
 		 Individual daviv = new Individual(sim,sim.grid.pointArray[4][0]); 
 		 System.out.print("\n\nPai 	"+daviv.toString());
 		 
+		 System.out.print("\n\nSTART OF REPRODUCTION\n\n \n");
+		 
 		 Individual I_1 = new Individual(daviv);
 		 I_1.addPointPath("left");
 		 System.out.print("\n\nI_1 " + I_1.toString());
@@ -178,6 +180,10 @@ public class Main extends DefaultHandler{
 		 sim.epidemic();
 		 System.out.print("\n\nIndivList after epidemic\n " + sim.individualListToString());
 		 System.out.print("\n\nEventPec after epidemic \n " + pec.miniToString());
+		 
+		 Reproduction reproduction=new Reproduction(0.0f, I_7);
+		 reproduction.simulateEvent();
+		 System.out.print("\n\nEventPec after sexy time \n " + pec.miniToString());
 		 
 
 //		 AbsEvent death= new Death(1.0f,daviv);

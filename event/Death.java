@@ -42,7 +42,7 @@ public class Death extends AbsEvent{
 	}
 	
 	public String toStringMini() {
-		return "Death [time=" + time + "]" + individual.myPoint.toString();
+		return "Death [time=" + time + "]  " + individual.myPoint.verticeToString();
 	}
 
 }

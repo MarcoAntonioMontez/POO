@@ -4,6 +4,7 @@ import java.util.*;
 
 import event.*;
 import simulation.*;
+import board.*;
 
 public class EventPec implements IPEC<AbsEvent>{
 	
@@ -14,6 +15,22 @@ public class EventPec implements IPEC<AbsEvent>{
 	public EventPec(Simulation sim){
 		this.sim=sim;
 		pec=new PriorityQueue<>((this.sim.getMaxPop()*3), timeComparator);
+	}
+	
+	public void removeEventsOfIndividual(Individual individual) {
+		// System.out.print("\n\nRemove Events of individual\n ");
+		PriorityQueue<AbsEvent> auxQueue = new PriorityQueue<>((this.sim.getMaxPop()*3), timeComparator);
+		AbsEvent aux;
+		int pecSize=pec.size();
+		
+		for(int i=0;i<pecSize;i++) {
+			aux=pec.remove();
+			if(aux.getIndividual()!=individual) {
+				auxQueue.add(aux);
+			}
+		}
+		numElements=auxQueue.size();
+		pec=auxQueue;
 	}
 	
 	public static Comparator<AbsEvent> timeComparator = new Comparator<AbsEvent>(){
@@ -29,7 +46,7 @@ public class EventPec implements IPEC<AbsEvent>{
 	
 	@Override
 	public void add(AbsEvent event) {
-		pec.add(event);
+		this.pec.add(event);
 		numElements++;
 	}
 	
@@ -44,14 +61,35 @@ public class EventPec implements IPEC<AbsEvent>{
 		numElements--;
 	}
 	
+	public String miniToString() {
+		if(pec.isEmpty()) {
+			return null;
+		}		
+		
+		String str="";
+		AbsEvent auxEvent;
+		int auxNumElements=this.numElements;
+		PriorityQueue<AbsEvent> auxQueue = new PriorityQueue<>((this.sim.getMaxPop()*3), timeComparator);
+		
+		for(AbsEvent event:pec) {
+			auxQueue.add(event);
+		}
+		
+		for(int i=0;i<pec.size();i++) {
+			auxEvent=auxQueue.remove();
+			str=str + "\n" + auxEvent.toStringMini()+ "\t confort " + auxEvent.getIndividual().getComfort(); 
+		}
+		
+		this.numElements=auxNumElements;
+		return "EventPec numElements=" + numElements+ str;	
+	}
+	
 	@Override
 	public String toString() {
 //		String str="";
 //		for(AbsEvent event : pec) {
 //			str=str + event.toStringMini();
 //		}
-		
-		
 		return "EventPec numElements=" + numElements + "\n list=" + pec ;
 	}
 	

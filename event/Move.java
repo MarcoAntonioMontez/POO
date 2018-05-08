@@ -64,7 +64,7 @@ public class Move extends AbsEvent{
 	}
 	
 	public String toStringMini() {
-		return "Move [time=" + time + "]" + individual.myPoint.toString();
+		return "Move [time=" + time + "]  " + individual.myPoint.verticeToString();
 	}
 
 

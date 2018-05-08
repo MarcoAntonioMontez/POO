@@ -20,11 +20,11 @@ public class Simulation {
 	public LinkedList<Individual> individualList = new LinkedList<Individual>();
 	Individual bestIndividual;
 	
-	public Simulation(InitObject initObject, int initPopul, int k){
+	public Simulation(InitObject initObject){
 		this.finalInst=initObject.finalinst;
-		this.initPopul=initPopul;
+		this.initPopul=initObject.initpop;
 		this.maxPopulation=initObject.maxpop;
-		this.k=k;
+		this.k=initObject.comfortsens;
 		
 		
 		Point[][] pointArray=createGridMatrix(initObject);
@@ -34,6 +34,19 @@ public class Simulation {
 		pec= new EventPec(this);
 		
 		this.initEvents(initObject);	
+	}
+	
+	public void popGenesis() {
+		Individual adam = new Individual(this,this.grid.initialPoint);
+		Reproduction firstPopulation = new Reproduction(0.0f,adam);
+		
+		for(int i=0;i<initPopul;i++) {
+			firstPopulation.generateFirstPopulation();
+		}	
+	}
+	
+	public float getFinalInst() {
+		return (float)this.finalInst;
 	}
 	
 	public AbsEvent getNextEvent() {

@@ -33,6 +33,25 @@ public class EventPec implements IPEC<AbsEvent>{
 		pec=auxQueue;
 	}
 	
+	public float returnDeathTime(Individual individual) {
+		// System.out.print("\n\nRemove Events of individual\n ");
+		Death death = new Death(0.0f,individual);
+		
+		for(AbsEvent event: pec) {
+			System.out.print("\n\nEvent\n "+event.toStringMini());
+			System.out.print("\nEvent Indi "+event.getIndividual().toString());
+			System.out.print("\n\nIndi "+individual.toString());
+			
+			if(event.getIndividual()==individual) {
+				System.out.print("\n\nindividual==individual");
+				if(death.getClass()==event.getClass()) {
+					return event.getTime();
+				}
+			}	
+		}
+		return 0.0f;
+	}
+	
 	public static Comparator<AbsEvent> timeComparator = new Comparator<AbsEvent>(){
 		
 		@Override

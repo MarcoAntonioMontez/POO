@@ -1,5 +1,7 @@
 package event;
 
+import java.util.PriorityQueue;
+
 import board.Individual;
 import numberGen.*;
 
@@ -20,18 +22,50 @@ public class Reproduction extends AbsEvent{
 		death.time=death.getNextTime();
 		
 		time=this.getNextTime();
-		if(initCheck(time))
+		if(this.initCheck())
 			sim.getEventPec().add(this);
 		
 		sim.getEventPec().add(death);
-		if(initCheck(move.time))
+		
+		if(move.initCheck())
 			sim.getEventPec().add(move);
-		if(initCheck(reproduction.time))
+		if(reproduction.initCheck())
 			sim.getEventPec().add(reproduction);
 		
 	}
 	
-	public boolean initCheck(float time) {
+	public void generateFirstPopulation() {
+		Individual son = individual.createSon();
+		sim.individualList.add(son);
+		AbsEvent move= new Move(time,son);
+		move.time=move.getNextTime();
+		AbsEvent reproduction = new Reproduction(this.getNextTime(),son);
+		AbsEvent death= new Death(time,son);
+		death.time=death.getNextTime();
+		
+		sim.getEventPec().add(death);
+		
+		if(move.initCheck()) {
+			System.out.print("\n\nINItCHECK\n\n\n");
+			sim.getEventPec().add(move);
+		}
+			
+//		if(reproduction.initCheck())
+//			sim.getEventPec().add(reproduction);
+		
+	}
+	
+	public boolean initCheck(){
+		if( this.time>=sim.getFinalInst()) {
+			return false;
+		}
+	
+		System.out.print("\n\nTime event " + this.time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
+		
+		if(time < sim.getEventPec().returnDeathTime(this.getIndividual())) {
+			return true;
+		}
+			
 		return true;
 	}
 	

@@ -3,6 +3,6 @@ package event;
 public interface IEvent{
 	
 	void simulateEvent();
-	boolean initCheck(float time);
+	boolean initCheck();
 
 }

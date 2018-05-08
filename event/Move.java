@@ -45,9 +45,18 @@ public class Move extends AbsEvent{
 		return this.time+randNum.expRandom(meanValue);
 	}
 	
-	public boolean initCheck(float time) {
+	public boolean initCheck(){
+		System.out.print("\n\nCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\n\n");
+		System.out.print("\n\nTime event " + time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
+		if( this.time>=sim.getFinalInst()) {
+			return false;
+		}
 		
-		return false;
+		if(time < sim.getEventPec().returnDeathTime(this.getIndividual())) {
+			return true;
+		}
+			
+		return true;
 	}
 	
 	public static void setParameter(int par) {

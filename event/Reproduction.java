@@ -21,15 +21,20 @@ public class Reproduction extends AbsEvent{
 		AbsEvent death= new Death((float)parameter3*(1-(float)Math.log((1-this.individual.getComfort()))),son);
 		
 		time=this.getNextTime();
-		this.sim.getEventPec().add(this);
+		if(initCheck(time))
+			this.sim.getEventPec().add(this);
 		
-		this.sim.getEventPec().add(move);
-		this.sim.getEventPec().add(reproduction);
 		this.sim.getEventPec().add(death);
+		if(initCheck(move.time))
+			this.sim.getEventPec().add(move);
+		if(initCheck(reproduction.time))
+			this.sim.getEventPec().add(reproduction);
+		
 	}
 	
-	public boolean initCheck() {
-		
+	public boolean initCheck(float time) {
+	
+			
 		return false;
 	}
 	

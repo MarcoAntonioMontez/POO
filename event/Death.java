@@ -23,7 +23,7 @@ public class Death extends AbsEvent{
 		return randNum.expRandom(meanValue);
 	}
 	
-	public boolean initCheck(){
+	public boolean initCheck(float time){
 		
 		return false;
 	}

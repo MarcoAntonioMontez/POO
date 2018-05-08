@@ -45,7 +45,7 @@ public class Move extends AbsEvent{
 		return this.time+randNum.expRandom(meanValue);
 	}
 	
-	public boolean initCheck() {
+	public boolean initCheck(float time) {
 		
 		return false;
 	}

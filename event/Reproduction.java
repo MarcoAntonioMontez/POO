@@ -20,9 +20,9 @@ public class Reproduction extends AbsEvent{
 		
 		System.out.print("\n\nFather time: " + this.getTime());
 		
-		
 		Death death= new Death(time,son);
 		death.time=death.getNextTime();
+		
 		Reproduction myReproduction = new Reproduction(this.getNextTime(),this.getIndividual());
 		System.out.print("\n\nFather 2 time: " + myReproduction.getTime());
 		/////Debug values

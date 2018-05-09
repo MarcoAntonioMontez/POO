@@ -118,8 +118,27 @@ public class Main extends DefaultHandler{
 		 Simulation sim = new Simulation(initObject);
 		 EventPec pec = sim.getEventPec();
 		 
-		 sim.simulate();
+		// sim.simulate();
 		 
+		 Individual adam = new Individual(sim,sim.grid.pointArray[3][2]);
+		 
+		 Individual eve = new Individual(sim,sim.grid.pointArray[2][1]);
+		 eve.addPointPath("down");
+		 eve.addPointPath("right");
+		 
+		 float pathEve = eve.getCostPath();
+		 float pathAdam =adam.getCostPath();
+		 System.out.print("\n\neve cost path: " + pathEve + " "+ eve.getLengthPath() +" and adam's cost path: " + pathAdam+ " "+adam.getLengthPath()+ "\n\n");
+		 System.out.print("\n\n eve's comfort: " +  eve.getComfort()+ " adam's comfort: " + adam.getComfort() +"\n");
+		 boolean test = sim.checkBestIndividual(adam);
+		 System.out.print("\n\nIs bestIndividual null: \n " + test);
+		 sim.setBestIndividual(adam);
+		 test=sim.checkBestIndividual(eve);
+		 System.out.print("\n\nIs eve better than adam: \n " + test +" eve's comfort: " +  eve.getComfort()+ " adam's comfort: " + adam.getComfort() +"\n");
+		 sim.setBestIndividual(eve);
+		 test = sim.checkBestIndividual(adam);
+		 System.out.print("\n\nIs adam better than eve: \n " + test);
+		
 //		 sim.popGenesis();
 //		 
 //		System.out.print("\n\nEventPec after sexy time \n " + pec.miniToString());
@@ -158,7 +177,6 @@ public class Main extends DefaultHandler{
 //				event.simulateEvent();
 //
 //			}
-		 
 		 
 		 
 //		 sim.popGenesis();

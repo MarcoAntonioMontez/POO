@@ -18,7 +18,7 @@ public class Simulation {
 	EventPec pec;
 	int numIndividuals;
 	public LinkedList<Individual> individualList = new LinkedList<Individual>();
-	Individual bestIndividual;
+	Individual bestIndividual=null;
 	
 	public Simulation(InitObject initObject){
 		this.finalInst=initObject.finalinst;
@@ -76,6 +76,32 @@ public class Simulation {
 	
 	public AbsEvent getNextEvent() {
 		return pec.removeFirst();
+	}
+	
+	public void setBestIndividual(Individual individual) {
+		bestIndividual = new Individual(individual);
+	}
+	
+	public boolean checkBestIndividual(Individual individual) {
+		if(bestIndividual == null)
+			return true;
+		
+		if(individual.myPoint.equals(grid.finalPoint)) {
+			if(!bestIndividual.myPoint.equals(grid.finalPoint)) {
+				return true;
+			}
+			if(individual.getComfort()>bestIndividual.getComfort()) {
+				return true;
+			}
+		}
+		
+		if(!bestIndividual.myPoint.equals(grid.finalPoint)) {
+			if(individual.getComfort()>bestIndividual.getComfort()) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public String individualListToString(){	

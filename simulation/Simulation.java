@@ -43,22 +43,27 @@ public class Simulation {
 		AbsEvent event;
 		int iteration=1;
 		
-		//while(!pec.isNull() && iteration<10) {
-			while(!pec.isNull()) {
+		while(!pec.isNull()) {
 			System.out.print("\n\n-----Iteration: " + iteration+"----\n\n");
 			event=this.getNextEvent();
 			event.simulateEvent();
+			
+
+			
 			System.out.print("\n\nPec " + pec.miniToString());
 			System.out.print("\n\nList of Individuals " + this.individualListToString());
 			iteration++;
+			
+			if(this.individualList.size()>=this.maxPopulation) {
+				System.out.print("\n\nEPIDEMIC!!!!!!!!!!!\n\n");
+				epidemic();
+				System.out.print("\n\nList of Individuals " + this.individualListToString());
+			}
 		}
 		
 		System.out.print("\n\nEnd of simulation\n " + pec.miniToString());
 		System.out.print("\n\nPec " + pec.miniToString());
-		System.out.print("\n\nList of Individuals " + this.individualListToString());
-		
-//Se best individual estive a  null da erro		System.out.print("\n\nBest Individual " + this.bestIndividual.toString());
-		
+		System.out.print("\n\nList of Individuals " + this.individualListToString());		
 	}
 	
 	public void popGenesis() {
@@ -110,7 +115,7 @@ public class Simulation {
 		}		
 		String str="";
 		for(Individual indiv:individualList) {
-			 str=str + "\n" + indiv.myPoint.verticeToString() + "\t confort " + indiv.getComfort(); 
+			 str=str + "\n" + indiv.myPoint.verticeToString() + "\t comfort " + indiv.getComfort(); 
 		 }
 		return str;
 	}
@@ -120,19 +125,21 @@ public class Simulation {
 	}
 	
 	public void epidemic() {
-		float minConfortToSurvive=0.45f;
 		 Individual aux;
+		 Random random = new Random();
 		
-		Comparator<Individual> confortComparator = new Comparator<Individual>(){
+		Comparator<Individual> comfortComparator = new Comparator<Individual>(){
 			@Override
 			public int compare(Individual I1, Individual I2) {
-				if(I1.getComfort()<=I2.getComfort())
+				if(I1.getComfort()==I2.getComfort())
+					return 0;
+				else if(I1.getComfort()<I2.getComfort())
 					return 1;
-				else
+				else 
 					return -1;
 	        }
 		};
-		 Collections.sort(this.individualList, confortComparator);
+		 Collections.sort(this.individualList, comfortComparator);
 		 
 		 LinkedList<Individual> tempList = new LinkedList<Individual>();
 		 
@@ -145,7 +152,7 @@ public class Simulation {
 		 
 		 while(!individualList.isEmpty()) {
 			 aux=individualList.removeFirst();
-			 if(aux.getComfort() >= minConfortToSurvive) {
+			 if(aux.getComfort() >random.nextFloat()) {
 				 tempList.addLast(aux);
 			 }
 			 else {

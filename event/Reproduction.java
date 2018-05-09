@@ -68,6 +68,9 @@ public class Reproduction extends AbsEvent{
 		
 		if(death.initCheck()) {
 			sim.getEventPec().add(death);
+		}else {
+			death.time=sim.getFinalInst();
+			sim.getEventPec().add(death);
 		}
 		if(move.initCheck()) {
 			sim.getEventPec().add(move);
@@ -76,7 +79,7 @@ public class Reproduction extends AbsEvent{
 			sim.getEventPec().add(reproduction);
 		}
 			//So adiciona individuo á lista se este adicionar alguma evento á pec
-		if(death.initCheck() || move.initCheck() || reproduction.initCheck()) {
+		if(move.initCheck() || reproduction.initCheck()) {
 			sim.individualList.add(son);
 		}
 	}

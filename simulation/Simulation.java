@@ -39,32 +39,32 @@ public class Simulation {
 	
 	public void simulate(){
 		this.popGenesis();
-		System.out.print("\n\nInitial Pec " + pec.miniToString());
-		System.out.print("\n\nInitial List of Individuals " + this.individualListToString());
+//		System.out.print("\n\nInitial Pec " + pec.miniToString());
+//		System.out.print("\n\nInitial List of Individuals " + this.individualListToString());
 		AbsEvent event;
 		iteration=1;
 		
 		while(!pec.isNull()) {
-			System.out.print("\n\n-----Iteration: " + iteration+"----\n\n");
+//			System.out.print("\n\n-----Iteration: " + iteration+"----\n\n");
 			event=this.getNextEvent();
 			event.simulateEvent();
 			
 
 			
-			System.out.print("\n\nPec " + pec.miniToString());
-			System.out.print("\n\nList of Individuals " + this.individualListToString());
+//			System.out.print("\n\nPec " + pec.miniToString());
+//			System.out.print("\n\nList of Individuals " + this.individualListToString());
 			iteration++;
 			
 			if(this.individualList.size()>=this.maxPopulation) {
-				System.out.print("\n\nEPIDEMIC!!!!!!!!!!!\n\n");
+//				System.out.print("\n\nEPIDEMIC!!!!!!!!!!!\n\n");
 				epidemic();
-				System.out.print("\n\nList of Individuals " + this.individualListToString());
+//				System.out.print("\n\nList of Individuals " + this.individualListToString());
 			}
 		}
 		
-		System.out.print("\n\nEnd of simulation\n " + pec.miniToString());
-		System.out.print("\n\nPec " + pec.miniToString());
-		System.out.print("\n\nList of Individuals " + this.individualListToString());		
+//		System.out.print("\n\nEnd of simulation\n " + pec.miniToString());
+//		System.out.print("\n\nPec " + pec.miniToString());
+//		System.out.print("\n\nList of Individuals " + this.individualListToString());		
 	}
 	
 	public void popGenesis() {

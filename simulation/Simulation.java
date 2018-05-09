@@ -200,6 +200,10 @@ public class Simulation {
 	public int getK() {
 		return k;
 	}
+	
+	public void setIteration(int i) {
+		iteration = i;
+	}
 
 	private boolean isPointInList(Point point,LinkedList<Point> pointList) {
 		

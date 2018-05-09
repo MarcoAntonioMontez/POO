@@ -354,7 +354,7 @@ public class Individual implements Cloneable{
 			str = str.substring(0, str.length() - 1);
 		}
 		
-		return str+"}\n";
+		return str+"}";
 	}
 
 	@Override

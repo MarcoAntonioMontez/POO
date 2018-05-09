@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<simulation finalinst="20" initpop="5" maxpop="20" comfortsens="3"> 
+<simulation finalinst="1000" initpop="5" maxpop="20" comfortsens="3"> 
    <grid colsnb="5" rowsnb="4"/> 
-   <initialpoint xinitial="4" yinitial="3"/> 
+   <initialpoint xinitial="1" yinitial="1"/> 
    <finalpoint xfinal="5" yfinal="4"/>
    <specialcostzones num="2">
       <zone xinitial="2" yinitial="2" xfinal="3" yfinal="3">4</zone>

@@ -342,6 +342,20 @@ public class Individual implements Cloneable{
 		}	
 		return str;
 	}
+	
+	public String verticePathString() {
+		String str="{";
+		
+		for(Point auxPoint: path) {
+			str=str+auxPoint.verticeToString()+",";
+		}
+		
+		if(path!=null) {  
+			str = str.substring(0, str.length() - 1);
+		}
+		
+		return str+"}\n";
+	}
 
 	@Override
 	public String toString() {

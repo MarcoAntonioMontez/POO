@@ -18,6 +18,10 @@ public abstract class AbsEvent implements Comparable<AbsEvent>, IEvent {
 		this.individual=individual;	
 	}
 	
+	AbsEvent(float time){
+		this.time=time;
+	}
+	
 	abstract public void simulateEvent();
 	
 	abstract public float getNextTime();

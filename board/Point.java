@@ -46,7 +46,7 @@ public class Point extends Vertice implements Cloneable{
 	}
 
 	public String verticeToString() {
-		return "Point [x=" + x + ", y=" + y + "]";
+		return "(" + x +"," + y +")";
 	}
 	
 	@Override

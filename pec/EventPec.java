@@ -103,7 +103,7 @@ public class EventPec implements IPEC<AbsEvent>{
 		
 		for(int i=0;i<pec.size();i++) {
 			auxEvent=auxQueue.remove();
-			str=str + "\n" + auxEvent.toStringMini()+ "\t comfort " + auxEvent.getIndividual().getComfort(); 
+			str=str + "\n" + auxEvent.toStringMini(); //+ "\t confort " + auxEvent.getIndividual().getComfort()
 		}
 		
 		this.numElements=auxNumElements;

@@ -12,6 +12,7 @@ public class Simulation {
 	int initPopul;
 	int maxPopulation;
 	int k;
+	int iteration=1;
 	public Grid grid;
 	int currentTime;
 	int currentEvent;
@@ -41,7 +42,7 @@ public class Simulation {
 		System.out.print("\n\nInitial Pec " + pec.miniToString());
 		System.out.print("\n\nInitial List of Individuals " + this.individualListToString());
 		AbsEvent event;
-		int iteration=1;
+		iteration=1;
 		
 		while(!pec.isNull()) {
 			System.out.print("\n\n-----Iteration: " + iteration+"----\n\n");
@@ -69,14 +70,37 @@ public class Simulation {
 	public void popGenesis() {
 		Individual adam = new Individual(this,this.grid.initialPoint);
 		Reproduction firstReproduction = new Reproduction(0.0f,adam);
+		Observation aux;
 		
 		for(int i=0;i<initPopul;i++) {
 			firstReproduction.generateFirstPopulation();
-		}	
+		}
+		
+		for(float i=(finalInst/20); i<finalInst; i+=(finalInst/20)) {
+			aux = new Observation(i);
+			getEventPec().add(aux);
+		}
+		aux = new Observation(finalInst+1);
+		getEventPec().add(aux);
 	}
 	
 	public float getFinalInst() {
 		return (float)this.finalInst;
+	}
+	
+	public int getIterations() {
+		return iteration;
+	}
+	
+	public int getNumIndividuals() {
+		return numIndividuals;
+	}
+	
+	public Individual getBestIndividual() {
+		if(bestIndividual == null)
+			return null;
+		
+		return new Individual(bestIndividual);
 	}
 	
 	public AbsEvent getNextEvent() {

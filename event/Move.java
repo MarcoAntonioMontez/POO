@@ -26,10 +26,14 @@ public class Move extends AbsEvent{
 				break;
 			}
 		}
-		this.individual.addPointPath(direction);
 		
 		time=this.getNextTime();
-		sim.getEventPec().add(this);
+		
+		if(this.initCheck()) {
+			this.individual.addPointPath(direction);
+			sim.getEventPec().add(this);
+		}
+
 	}
 	
 	@Override

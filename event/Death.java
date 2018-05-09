@@ -20,7 +20,7 @@ public class Death extends AbsEvent{
 	public float getNextTime() {
 		float meanValue=0;
 		meanValue=(float)parameter*(1-(float)Math.log((1.0f-(float)this.individual.getComfort())));
-		return randNum.expRandom(meanValue);
+		return this.time+randNum.expRandom(meanValue);
 	}
 	
 	public boolean initCheck(){

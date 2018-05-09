@@ -18,7 +18,7 @@ public class EventPec implements IPEC<AbsEvent>{
 	}
 	
 	public boolean isNull() {
-		if(this.pec==null) {
+		if(this.pec.isEmpty()) {
 			return true;
 		}
 		return false;

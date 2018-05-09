@@ -38,16 +38,19 @@ public class Simulation {
 	
 	public void simulate(){
 		this.popGenesis();
-		System.out.print("\n\nPec " + pec.miniToString());
-		System.out.print("\n\nList of Individuals " + this.individualListToString());
+		System.out.print("\n\nInitial Pec " + pec.miniToString());
+		System.out.print("\n\nInitial List of Individuals " + this.individualListToString());
 		AbsEvent event;
+		int iteration=1;
 		
-		//
-		
-		while(! pec.isNull()) {
+		//while(!pec.isNull() && iteration<10) {
+			while(!pec.isNull()) {
+			System.out.print("\n\n-----Iteration: " + iteration+"----\n\n");
 			event=this.getNextEvent();
 			event.simulateEvent();
-
+			System.out.print("\n\nPec " + pec.miniToString());
+			System.out.print("\n\nList of Individuals " + this.individualListToString());
+			iteration++;
 		}
 		
 		System.out.print("\n\nEnd of simulation\n " + pec.miniToString());

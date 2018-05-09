@@ -17,9 +17,14 @@ public class Reproduction extends AbsEvent{
 		Move move= new Move(time,son);
 		move.time=move.getNextTime();
 		Reproduction reproduction = new Reproduction(this.getNextTime(),son);
+		
+		System.out.print("\n\nFather time: " + this.getTime());
+		
+		
 		Death death= new Death(time,son);
 		death.time=death.getNextTime();
 		Reproduction myReproduction = new Reproduction(this.getNextTime(),this.getIndividual());
+		System.out.print("\n\nFather 2 time: " + myReproduction.getTime());
 		/////Debug values
 //		move.time=4.0f;
 //		reproduction.time=3.0f;
@@ -40,7 +45,7 @@ public class Reproduction extends AbsEvent{
 		if(reproduction.initCheck()) {
 			sim.getEventPec().add(reproduction);
 		}
-			//So adiciona individuo á lista se este adicionar alguma evento á pec
+			///So adiciona individuo á lista se este adicionar alguma evento á pec
 		if(death.initCheck() || move.initCheck() || reproduction.initCheck()) {
 			sim.individualList.add(son);
 		}
@@ -90,7 +95,7 @@ public class Reproduction extends AbsEvent{
 	public float getNextTime() {
 		float meanValue=0;
 		meanValue=(float)parameter*(1-(float)Math.log(this.individual.getComfort()));
-		return randNum.expRandom(meanValue);
+		return (this.time+randNum.expRandom(meanValue));
 	}
 	
 	public static void setParameter(int par) {

@@ -48,7 +48,7 @@ public class Individual implements Cloneable{
 		for(i=0; i< (individual.lengthPath-size)+1;i++)
 			individual.removePointPath();
 		
-		System.out.print("\n\nFather=" + this.toString()+"\n\nson= " + individual.toString()+"\n\n");
+		//System.out.print("\n\nFather=" + this.toString()+"\n\nson= " + individual.toString()+"\n\n");
 		
 		return individual;
 	}
@@ -178,7 +178,7 @@ public class Individual implements Cloneable{
 
 		Point aux=path.pop();
 		if(path.isEmpty()) {
-			System.out.println("\nCannot remove lastPoint from Path!\n");
+			//System.out.println("\nCannot remove lastPoint from Path!\n");
 			path.add(aux);
 			return false;
 		}
@@ -212,7 +212,7 @@ public class Individual implements Cloneable{
 		
 		if(str.equals("up")) {
 			if(myPoint.nearEdges.upEdge==null) {
-				System.out.println("Cannot add up edge!");
+				System.out.println("\n\n\n\n\n\nCannot add up edge!");
 				return false;
 			}
 			newPoint=this.getNextPoint("up");
@@ -220,7 +220,7 @@ public class Individual implements Cloneable{
 				 while(!path.peek().equals(newPoint)){
 					 this.removePointPath();
 				 }
-				System.out.println("Ciclo no Path!!");
+				//System.out.println("Ciclo no Path!!");
 				return true;
 				}
 			 else {
@@ -234,7 +234,7 @@ public class Individual implements Cloneable{
 		
 		else if(str.equals("right")) {
 			if(myPoint.nearEdges.rightEdge==null) {
-				System.out.println("Cannot add right edge!");
+				System.out.println("\n\n\n\n\n\nCannot add right edge!");
 				return false;
 			}
 			newPoint=this.getNextPoint("right");
@@ -242,7 +242,7 @@ public class Individual implements Cloneable{
 				 while(!path.peek().equals(newPoint)){
 					 this.removePointPath();
 				 }
-				System.out.println("\nCiclo no Path!!");
+				//System.out.println("\nCiclo no Path!!");
 				return true;
 				}
 			 else {
@@ -256,7 +256,7 @@ public class Individual implements Cloneable{
 		
 		else if(str.equals("down")) {
 			if(myPoint.nearEdges.downEdge==null) {
-				System.out.println("Cannot add down edge!");
+				System.out.println("\n\n\n\n\n\nCannot add down edge!");
 				return false;
 			}
 			newPoint=this.getNextPoint("down");
@@ -264,7 +264,7 @@ public class Individual implements Cloneable{
 				 while(!path.peek().equals(newPoint)){
 					 this.removePointPath();
 				 }
-				System.out.println("\nCiclo no Path!!");
+				//System.out.println("\nCiclo no Path!!");
 				return true;
 				}
 			 else {
@@ -277,7 +277,7 @@ public class Individual implements Cloneable{
 		}
 		 else if(str.equals("left")) {
 				if(myPoint.nearEdges.leftEdge==null) {
-					System.out.println("Cannot add left edge!");
+					System.out.println("\n\n\n\n\n\nCannot add left edge!");
 					return false;
 				}
 				newPoint=this.getNextPoint("left");
@@ -285,7 +285,7 @@ public class Individual implements Cloneable{
 					 while(!path.peek().equals(newPoint)){
 						 this.removePointPath();
 					 }
-					System.out.println("\nCiclo no Path!!");
+					//System.out.println("\nCiclo no Path!!");
 					return true;
 					}
 				 else {

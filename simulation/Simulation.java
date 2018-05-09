@@ -36,12 +36,31 @@ public class Simulation {
 		this.initEvents(initObject);	
 	}
 	
+	public void simulate(){
+		this.popGenesis();
+		System.out.print("\n\nPec " + pec.miniToString());
+		System.out.print("\n\nList of Individuals " + this.individualListToString());
+		AbsEvent event;
+		while(! pec.isNull()) {
+			event=this.getNextEvent();
+			event.simulateEvent();
+			System.out.print("\n\nPec " + pec.miniToString());
+			System.out.print("\n\nList of Individuals " + this.individualListToString());
+		}
+		
+		System.out.print("\n\nEnd of simulation\n " + pec.miniToString());
+		System.out.print("\n\nPec " + pec.miniToString());
+		System.out.print("\n\nList of Individuals " + this.individualListToString());
+		System.out.print("\n\nBest Individual " + this.bestIndividual.toString());
+		
+	}
+	
 	public void popGenesis() {
 		Individual adam = new Individual(this,this.grid.initialPoint);
-		Reproduction firstPopulation = new Reproduction(0.0f,adam);
+		Reproduction firstReproduction = new Reproduction(0.0f,adam);
 		
 		for(int i=0;i<initPopul;i++) {
-			firstPopulation.generateFirstPopulation();
+			firstReproduction.generateFirstPopulation();
 		}	
 	}
 	

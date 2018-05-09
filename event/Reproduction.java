@@ -14,59 +14,76 @@ public class Reproduction extends AbsEvent{
 	
 	public void simulateEvent() {
 		Individual son = individual.createSon();
-		sim.individualList.add(son);
-		AbsEvent move= new Move(time,son);
+		Move move= new Move(time,son);
 		move.time=move.getNextTime();
-		AbsEvent reproduction = new Reproduction(this.getNextTime(),son);
-		AbsEvent death= new Death(time,son);
+		Reproduction reproduction = new Reproduction(this.getNextTime(),son);
+		Death death= new Death(time,son);
 		death.time=death.getNextTime();
+		Reproduction myReproduction = new Reproduction(this.getNextTime(),this.getIndividual());
+		/////Debug values
+//		move.time=4.0f;
+//		reproduction.time=3.0f;
+//		death.time=20.0f;
+//		myReproduction.time=6.0f;
+		///////
 		
-		time=this.getNextTime();
-		if(this.initCheck())
-			sim.getEventPec().add(this);
+		if(myReproduction.initCheck()) {
+			sim.getEventPec().add(myReproduction);
+		}
 		
-		sim.getEventPec().add(death);
-		
-		if(move.initCheck())
+		if(death.initCheck()) {
+			sim.getEventPec().add(death);
+		}
+		if(move.initCheck()) {
 			sim.getEventPec().add(move);
-		if(reproduction.initCheck())
+		}	
+		if(reproduction.initCheck()) {
 			sim.getEventPec().add(reproduction);
+		}
+			//So adiciona individuo á lista se este adicionar alguma evento á pec
+		if(death.initCheck() || move.initCheck() || reproduction.initCheck()) {
+			sim.individualList.add(son);
+		}
 		
 	}
 	
 	public void generateFirstPopulation() {
 		Individual son = individual.createSon();
-		sim.individualList.add(son);
-		AbsEvent move= new Move(time,son);
+		Move move= new Move(time,son);
 		move.time=move.getNextTime();
-		AbsEvent reproduction = new Reproduction(this.getNextTime(),son);
-		AbsEvent death= new Death(time,son);
+		Reproduction reproduction = new Reproduction(this.getNextTime(),son);
+		Death death= new Death(time,son);
 		death.time=death.getNextTime();
+//		move.time=2.0f;
+//		reproduction.time=1.0f;
+//		death.time=3.0f;
 		
-		sim.getEventPec().add(death);
-		
-		if(move.initCheck()) {
-			System.out.print("\n\nINItCHECK\n\n\n");
-			sim.getEventPec().add(move);
+		if(death.initCheck()) {
+			sim.getEventPec().add(death);
 		}
-			
-//		if(reproduction.initCheck())
-//			sim.getEventPec().add(reproduction);
-		
+		if(move.initCheck()) {
+			sim.getEventPec().add(move);
+		}	
+		if(reproduction.initCheck()) {
+			sim.getEventPec().add(reproduction);
+		}
+			//So adiciona individuo á lista se este adicionar alguma evento á pec
+		if(death.initCheck() || move.initCheck() || reproduction.initCheck()) {
+			sim.individualList.add(son);
+		}
 	}
 	
 	public boolean initCheck(){
+		System.out.print("\n\nTime eventRepro " + time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
 		if( this.time>=sim.getFinalInst()) {
 			return false;
 		}
-	
-		System.out.print("\n\nTime event " + this.time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
 		
 		if(time < sim.getEventPec().returnDeathTime(this.getIndividual())) {
 			return true;
 		}
 			
-		return true;
+		return false;
 	}
 	
 	@Override

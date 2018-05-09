@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<simulation finalinst="100" initpop="1" maxpop="500" comfortsens="3"> 
+<simulation finalinst="100" initpop="1" maxpop="10" comfortsens="3"> 
    <grid colsnb="5" rowsnb="4"/> 
    <initialpoint xinitial="4" yinitial="3"/> 
    <finalpoint xfinal="5" yfinal="4"/>

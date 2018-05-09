@@ -17,6 +17,13 @@ public class EventPec implements IPEC<AbsEvent>{
 		pec=new PriorityQueue<>((this.sim.getMaxPop()*3), timeComparator);
 	}
 	
+	public boolean isNull() {
+		if(this.pec==null) {
+			return true;
+		}
+		return false;
+	}
+	
 	public void removeEventsOfIndividual(Individual individual) {
 		// System.out.print("\n\nRemove Events of individual\n ");
 		PriorityQueue<AbsEvent> auxQueue = new PriorityQueue<>((this.sim.getMaxPop()*3), timeComparator);
@@ -38,18 +45,18 @@ public class EventPec implements IPEC<AbsEvent>{
 		Death death = new Death(0.0f,individual);
 		
 		for(AbsEvent event: pec) {
-			System.out.print("\n\nEvent\n "+event.toStringMini());
-			System.out.print("\nEvent Indi "+event.getIndividual().toString());
-			System.out.print("\n\nIndi "+individual.toString());
+//			System.out.print("\n\nEvent\n "+event.toStringMini());
+//			System.out.print("\nEvent Indi "+event.getIndividual().toString());
+//			System.out.print("\n\nIndi "+individual.toString());
 			
 			if(event.getIndividual()==individual) {
-				System.out.print("\n\nindividual==individual");
+				//System.out.print("\n\nindividual==individual");
 				if(death.getClass()==event.getClass()) {
 					return event.getTime();
 				}
 			}	
 		}
-		return 0.0f;
+		return this.sim.getFinalInst();
 	}
 	
 	public static Comparator<AbsEvent> timeComparator = new Comparator<AbsEvent>(){

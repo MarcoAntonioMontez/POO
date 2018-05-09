@@ -26,16 +26,10 @@ public class Move extends AbsEvent{
 				break;
 			}
 		}
-//		System.out.print("\n\nQueue"+ queue);
-//		
-//		System.out.print("\n\nRandom" + result + " direction " + direction);	
 		this.individual.addPointPath(direction);
 		
-		//Calcular o time do proximo event
-		//Por o novo move na pec
-		
 		time=this.getNextTime();
-		this.sim.getEventPec().add(this);
+		sim.getEventPec().add(this);
 	}
 	
 	@Override
@@ -46,8 +40,7 @@ public class Move extends AbsEvent{
 	}
 	
 	public boolean initCheck(){
-		System.out.print("\n\nCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\n\n");
-		System.out.print("\n\nTime event " + time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
+		System.out.print("\n\nTime eventMove " + time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
 		if( this.time>=sim.getFinalInst()) {
 			return false;
 		}
@@ -56,7 +49,7 @@ public class Move extends AbsEvent{
 			return true;
 		}
 			
-		return true;
+		return false;
 	}
 	
 	public static void setParameter(int par) {

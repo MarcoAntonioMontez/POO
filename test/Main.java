@@ -117,28 +117,39 @@ public class Main extends DefaultHandler{
 		 
 		 Simulation sim = new Simulation(initObject);
 		 EventPec pec = sim.getEventPec();
-		 sim.popGenesis();
 		 
 		 
-		 //Individual adam = new Individual(sim,sim.grid.initialPoint);
-	
-			System.out.print("\n\nEventPec after sexy time \n " + pec.miniToString());
-			AbsEvent event=sim.getNextEvent();
-			if(!pec.isNull()) {
-				event.simulateEvent();
-			}
-			
-			System.out.print("\n\nEventPec after first event\n " + pec.miniToString());
-			event=sim.getNextEvent();
-			if(!pec.isNull()) {
-				event.simulateEvent();
-			}
-			
+		 //Simulate está com erros
+		 //O codigo em baixo da jeito para simular
+		 //Na reproduction Podem escolher o valor dos filhos para debug
+		 sim.simulate();
 		 
-			System.out.print("\n\nEventPec after second event \n " + pec.miniToString());
 		 
-
-		 System.out.print("\n\nIndivList after popGenesis\n " + sim.individualListToString());
+		 
+//		 sim.popGenesis();
+//		 
+//		 
+//		 //Individual adam = new Individual(sim,sim.grid.initialPoint);
+//		 
+//		 //Se quiserem dar set
+//		 
+//			System.out.print("\n\nEventPec after sexy time \n " + pec.miniToString());
+//			AbsEvent event=sim.getNextEvent();
+//			if(!pec.isNull()) {
+//				event.simulateEvent();
+//			}
+//			
+//			System.out.print("\n\nEventPec after first event\n " + pec.miniToString());
+//			event=sim.getNextEvent();
+//			if(!pec.isNull()) {
+//				event.simulateEvent();
+//			}
+//			
+//		 
+//			System.out.print("\n\nEventPec after second event \n " + pec.miniToString());
+//		 
+//
+//		 System.out.print("\n\nIndivList after popGenesis\n " + sim.individualListToString());
 	 
 	}
 }

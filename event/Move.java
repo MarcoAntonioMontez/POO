@@ -40,7 +40,7 @@ public class Move extends AbsEvent{
 	}
 	
 	public boolean initCheck(){
-		System.out.print("\n\nTime eventMove " + time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
+		//System.out.print("\n\nTime eventMove " + time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
 		if( this.time>=sim.getFinalInst()) {
 			return false;
 		}

@@ -74,7 +74,7 @@ public class Reproduction extends AbsEvent{
 	}
 	
 	public boolean initCheck(){
-		System.out.print("\n\nTime eventRepro " + time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
+		//System.out.print("\n\nTime eventRepro " + time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
 		if( this.time>=sim.getFinalInst()) {
 			return false;
 		}

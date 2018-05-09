@@ -41,17 +41,20 @@ public class Simulation {
 		System.out.print("\n\nPec " + pec.miniToString());
 		System.out.print("\n\nList of Individuals " + this.individualListToString());
 		AbsEvent event;
+		
+		//
+		
 		while(! pec.isNull()) {
 			event=this.getNextEvent();
 			event.simulateEvent();
-			System.out.print("\n\nPec " + pec.miniToString());
-			System.out.print("\n\nList of Individuals " + this.individualListToString());
+
 		}
 		
 		System.out.print("\n\nEnd of simulation\n " + pec.miniToString());
 		System.out.print("\n\nPec " + pec.miniToString());
 		System.out.print("\n\nList of Individuals " + this.individualListToString());
-		System.out.print("\n\nBest Individual " + this.bestIndividual.toString());
+		
+//Se best individual estive a  null da erro		System.out.print("\n\nBest Individual " + this.bestIndividual.toString());
 		
 	}
 	

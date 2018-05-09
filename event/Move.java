@@ -32,7 +32,7 @@ public class Move extends AbsEvent{
 		if(this.initCheck()) {
 			this.individual.addPointPath(direction);
 			sim.getEventPec().add(this);
-		}
+		}	
 
 	}
 	

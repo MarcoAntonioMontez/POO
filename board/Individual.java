@@ -101,6 +101,11 @@ public class Individual implements Cloneable{
 		return this.comfort;
 	}
 	
+//	public boolean checkBestComfort() {
+//		while
+//		return false;
+//	}
+	
 	private void updateComfort() {
 		double a=0;
 		double b=0;

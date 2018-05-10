@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<simulation finalinst="10000" initpop="50" maxpop="200" comfortsens="1"> 
-   <grid colsnb="300" rowsnb="300"/> 
+<simulation finalinst="6000" initpop="50" maxpop="200" comfortsens="1"> 
+   <grid colsnb="250" rowsnb="250"/> 
    <initialpoint xinitial="1" yinitial="1"/> 
-   <finalpoint xfinal="250" yfinal="250"/>
+   <finalpoint xfinal="200" yfinal="200"/>
    <specialcostzones num="2">
       <zone xinitial="2" yinitial="2" xfinal="3" yfinal="3">4</zone>
       <zone xinitial="4" yinitial="4" xfinal="10" yfinal="10">4</zone>

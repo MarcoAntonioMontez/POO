@@ -12,6 +12,7 @@ public class Grid {
 	int numCol;
 	int numRow;
 	int numEdges;
+	//Podemos fazer um getter
 	public Point initialPoint, finalPoint;
 	int cmax;
 	

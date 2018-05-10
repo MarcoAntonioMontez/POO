@@ -1,6 +1,7 @@
 package board;
 
 public class NearEdges  implements Cloneable{
+	//Esta bem
 	public Edge upEdge=null;
 	public Edge rightEdge=null;
 	public Edge downEdge=null;

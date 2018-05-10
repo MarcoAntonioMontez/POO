@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<simulation finalinst="2000" initpop="30" maxpop="100" comfortsens="3"> 
-   <grid colsnb="200" rowsnb="200"/> 
+<simulation finalinst="2000" initpop="30" maxpop="100" comfortsens="1"> 
+   <grid colsnb="100" rowsnb="100"/> 
    <initialpoint xinitial="1" yinitial="1"/> 
-   <finalpoint xfinal="200" yfinal="200"/>
+   <finalpoint xfinal="100" yfinal="100"/>
    <specialcostzones num="1">
       <zone xinitial="2" yinitial="2" xfinal="3" yfinal="3">4</zone>
    </specialcostzones>
@@ -13,8 +13,8 @@
       <obstacle xpos="4" ypos="2"/>
    </obstacles>
    <events>
-      <death param="100"/>
-      <reproduction param="1"/>
-      <move param="1"/>
+      <death param="50"></death>
+      <reproduction param="1"></reproduction>
+      <move param="1"></move>
    </events>
 </simulation>

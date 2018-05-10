@@ -7,6 +7,11 @@ import pec.*;
 import test.*;
 import event.*;
 
+/**
+ * Simulates the all the events needed for this simulation
+ * 
+ *
+ */
 public class Simulation {
 	int finalInst;
 	int initPopul;

@@ -8,8 +8,8 @@ import simulation.*;
 
 public abstract class AbsEvent implements Comparable<AbsEvent>, IEvent {
 	
-	static EventPec pec=null;
 	static Simulation sim=null;
+	static EventPec pec=null;
 	Individual individual;
 	float time;
 	
@@ -48,13 +48,10 @@ public abstract class AbsEvent implements Comparable<AbsEvent>, IEvent {
 		return "AbsEvent [time=" + time + "]";
 	}
 	
-
-	
 	@Override
 	public int compareTo(AbsEvent event) {
 		if(time==event.time)
 			return 0;
-		
 		if(time<event.time)
 			return -1;
 		else

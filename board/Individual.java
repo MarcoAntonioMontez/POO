@@ -5,8 +5,10 @@ import simulation.*;
 
 public class Individual implements Cloneable{
 	Simulation sim;
+	//Getter my point
 	public Point myPoint;
-	public Stack<Point> path =null;
+	//Este esta bem assim
+	public Stack<Point>path=null;
 	float comfort;
 	int costPath;
 	int lengthPath;

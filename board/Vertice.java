@@ -1,8 +1,8 @@
 package board;
 
 public class Vertice {
-	public int x;
-	public int y;
+	int x;
+	int y;
 	
 	public Vertice(int x, int y) {
 		this.x = x;

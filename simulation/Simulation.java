@@ -280,7 +280,7 @@ public class Simulation {
 				pointArray[i][j]=new Point(i+1,j+1,fillNearEdges(initObject,i,j));
 				
 				if(isPointInList(new Point(i+1,j+1),initObject.obstacles)) {
-					pointArray[i][j]=new Point(i+1,j+1,new NearEdges());		
+					pointArray[i][j]=new Point(i+1,j+1,new NearEdges(null, null, null, null));		
 				}	
 			}
 		}

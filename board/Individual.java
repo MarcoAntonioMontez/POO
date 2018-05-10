@@ -4,12 +4,14 @@ import java.util.*;
 import simulation.*;
 
 /**
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
+ * 
  * Class used to store all the information concerning an individual 
  * 
- *sim is the associated simulation
- *myPoint is the current position of this individual
- *path is the path already traversed by this individual, it is a stack of points
- *comfort, costPath and lenghtPath are self-explanatory
+ *sim is the associated simulation.
+ *myPoint is the current position of this individual.
+ *path is the path already traversed by this individual, it is a stack of points.
+ *comfort, costPath and lenghtPath are self-explanatory.
  */
 public class Individual implements Cloneable{
 	Simulation sim;
@@ -19,12 +21,11 @@ public class Individual implements Cloneable{
 	int costPath;
 	int lengthPath;
 	
-	
 	/**
 	 * Again, there are two constructors for this class: one to create the first Individual and one to clone individuals.
-	 * This constructor is used to generate the first individual which will have no events and only be used to generate the initial population
-	 * @param sim is the associated simulation
-	 * @param myPoint current point of this individual
+	 * This constructor is used to generate the first individual which will have no events and only be used to generate the initial population.
+	 * @param sim is the associated simulation.
+	 * @param myPoint current point of this individual.
 	 */
 	public Individual(Simulation sim,Point myPoint) {
 		this.sim=sim;
@@ -41,8 +42,8 @@ public class Individual implements Cloneable{
 	
 	/**
 	 * This constructor is used when there are already individuals in the simulation.
-	 * It will create an exact copy of the individual it receives
-	 * @param individual is the individual which will be copied
+	 * It will create an exact copy of the individual it receives.
+	 * @param individual is the individual which will be copied.
 	 */
 	public Individual(Individual individual) {
 		this.sim=individual.sim;
@@ -62,7 +63,7 @@ public class Individual implements Cloneable{
 	 * It will not make an exact copy, it will only inherit 90% of its father's path plus comfort.
 	 * It will update the length and cost of the path.
 	 * It will correct myPoint for the son as well.
-	 * @return son, the new individual created with some of its father's characteristics
+	 * @return son, the new individual created with some of its father's characteristics.
 	 */
 	public Individual createSon() {
 		int i=0;
@@ -78,13 +79,12 @@ public class Individual implements Cloneable{
 		return individual;
 	}
 	
-	
-/**
- * Method used to identify valid edges for this individual: if this individual is in point(1,1),
- * it will only have 2 valid edges (down and right).
- * Obstacles are points with no edges, so edges leading to an obstacle are not valid.
- * @return listString, a string containing "up", "right", "down" and "left" depending if these are valid edges
- */
+	/**
+	 * Method used to identify valid edges for this individual: if this individual is in point(1,1),
+	 * it will only have 2 valid edges (down and right).
+	 * Obstacles are points with no edges, so edges leading to an obstacle are not valid.
+	 * @return listString, a string containing "up", "right", "down" and "left" depending if these are valid edges.
+	 */
 	public Queue<String> getValidEdges(){
 		Queue<String> listString = new LinkedList<String>();
 		if(this.myPoint.nearEdges.upEdge!=null) {
@@ -104,7 +104,7 @@ public class Individual implements Cloneable{
 	
 	/**
 	 * Method used to identify number of valid edges for an individual.
-	 * @return num, an int containing number of valid edges
+	 * @return num, an int containing number of valid edges.
 	 */
 	public int getNumEdges() {
 		int num=0;
@@ -124,22 +124,33 @@ public class Individual implements Cloneable{
 		return num;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return int lengthPath (length of the path of this individual).
+	 */
 	public int getLengthPath() {
 		return lengthPath;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return int costPath (cost of the path of this individual).
+	 */
 	public int getCostPath() {
 		return costPath;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return float comfort.
+	 */
 	public float getComfort() {
 		updateComfort();
 		return this.comfort;
 	}
 	
-	
 	/**
-	 * Method to used to update the comfort of this individual
+	 * Method to used to update the comfort of this individual.
 	 */
 	private void updateComfort() {
 		double a=0;
@@ -158,7 +169,7 @@ public class Individual implements Cloneable{
 	}
 	
 	/**
-	 * Method used to calculate the distance between this individual and the final point
+	 * Method used to calculate the distance between this individual and the final point.
 	 * The distance is calculated with norm 1 (absolute value).
 	 * @return dist, an integer because the distance will only be measured in number of edges.
 	 */
@@ -173,7 +184,7 @@ public class Individual implements Cloneable{
 	
 	/**
 	 * Method used to determine the relative direction of a point to this individual (up, right, down, left).
-	 * @param p2 point we have to locate
+	 * @param p2 point we have to locate.
 	 * @return String containing the direction hardcoded.
 	 */
 	public String direction(Point p2) {
@@ -267,7 +278,7 @@ public class Individual implements Cloneable{
 	/**
 	 * Method used to identify and add a point to this individual's path.
 	 * Will also update path's cost and length,  and update myPoint of this individual.
-	 * @param str, a string containing the relative direction (up, right, down, left) to this individual, of the point we have to add the path
+	 * @param str, a string containing the relative direction (up, right, down, left) to this individual, of the point we have to add the path.
 	 * @return boolean, true if a point was added to this individual's path, and false if there was no edge in the specified direction.
 	 */
 	public boolean addPointPath(String str) {
@@ -361,7 +372,7 @@ public class Individual implements Cloneable{
 	
 	/**
 	 * Method used to pop the stack (public, for other packages). 
-	 * @return Point popped
+	 * @return Point popped.
 	 */
 	public Point pollPath() {
 		return path.pop();

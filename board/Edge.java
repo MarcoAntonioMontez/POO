@@ -1,8 +1,10 @@
 package board;
+
 /**
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
+ * 
  * This class is used to represent egdes in our grid.
  *  These edges have 3 attributes: its cost, and the two points which define the position of the edge.
- *
  */
 public class Edge {
 	int cost;
@@ -10,11 +12,11 @@ public class Edge {
 	Vertice finalVertice;
 	
 	/**
-	 * There are two constructors, one is used to build the grid and the other is used to update the special cost zones respectively
-	 * This one is for building the grid
-	 * @param cost int which represents the cost of this specific edge
-	 * @param initialVertice vertice representing the starting point of the edge
-	 * @param finalVertice  vertice representing the final point of the edge
+	 * There are two constructors, one is used to build the grid and the other is used to update the special cost zones respectively.
+	 * This one is for building the grid.
+	 * @param cost int which represents the cost of this specific edge.
+	 * @param initialVertice vertice representing the starting point of the edge.
+	 * @param finalVertice  vertice representing the final point of the edge.
 	 */	
 	public Edge(int cost, Vertice initialVertice, Vertice finalVertice) {
 		super();
@@ -24,10 +26,10 @@ public class Edge {
 	}
 	
 	/**
-	 * This one is for updating the special cost zones
-	 * @param cost int which represents the cost of this specific edge
-	 * @param initialPoint point representing the starting point of the edge
-	 * @param finalPoint  point representing the final point of the edge
+	 * This one is for updating the special cost zones.
+	 * @param cost int which represents the cost of this specific edge.
+	 * @param initialPoint point representing the starting point of the edge.
+	 * @param finalPoint  point representing the final point of the edge.
 	 */
 	public Edge(int cost, Point initialPoint, Point finalPoint) {
 		super();
@@ -35,25 +37,42 @@ public class Edge {
 		this.initialVertice = new Vertice(initialPoint.x,initialPoint.y);
 		this.finalVertice = new Vertice(finalPoint.x,finalPoint.y);;
 	}
-	
-	
+		
+	/**
+	 * 	Self-explanatory.
+	 * @param cost
+	 */
 	public void setCost(int cost) {
 		this.cost = cost;
 		return;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return cost (int)
+	 */
 	public int getCost() {
 		return cost;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return Vertice inicialVertice.
+	 */
 	public Vertice getInicialVertice() {
 		return initialVertice;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return Vertice finalVertice.
+	 */
 	public Vertice getFinalVertice() {
 		return finalVertice;
 	}
-	
+	/**
+	 * Self-explanatory.
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,6 +83,9 @@ public class Edge {
 		return result;
 	}
 
+	/**
+	 * Self-explanatory.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -88,6 +110,9 @@ public class Edge {
 		return true;
 	}
 
+	/**
+	 * Self-explanatory.
+	 */
 	@Override
 	public String toString() {
 		return "Edge [cost=" + cost + ", initialVertice=" + initialVertice + ", finalVertice=" + finalVertice + "]";

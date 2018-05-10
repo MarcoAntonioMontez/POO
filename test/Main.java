@@ -110,16 +110,10 @@ public class Main extends DefaultHandler{
 		 // parse the XML document with this handler
 		 DefaultHandler handler = new Main();
 		 saxParser.parse(new File(fileName), handler);
-		 
-		 //System.out.print(initObject.toString());
-		 
-		 System.out.print("\n\n");
-		 
+		 	 
 		 Simulation sim = new Simulation(initObject);
-		 EventPec pec = sim.getEventPec();
 		 
 		 sim.simulate();
 
-	 
 	}
 }

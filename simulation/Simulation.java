@@ -73,7 +73,7 @@ public class Simulation {
 	}
 	
 	public void popGenesis() {
-		Individual adam = new Individual(this,this.grid.initialPoint);
+		Individual adam = new Individual(this,this.grid.getInitialPoint());
 		Reproduction firstReproduction = new Reproduction(0.0f,adam);
 		Observation aux;
 		
@@ -120,8 +120,8 @@ public class Simulation {
 		if(bestIndividual == null)
 			return true;
 		
-		if(individual.myPoint.equals(grid.finalPoint)) {
-			if(!bestIndividual.myPoint.equals(grid.finalPoint)) {
+		if(individual.myPoint.equals(grid.getFinalPoint())) {
+			if(!bestIndividual.myPoint.equals(grid.getFinalPoint())) {
 				return true;
 			}
 			if(individual.getComfort()>bestIndividual.getComfort()) {
@@ -129,7 +129,7 @@ public class Simulation {
 			}
 		}
 		
-		if(!bestIndividual.myPoint.equals(grid.finalPoint)) {
+		if(!bestIndividual.myPoint.equals(grid.getFinalPoint())) {
 			if(individual.getComfort()>bestIndividual.getComfort()) {
 				return true;
 			}
@@ -267,10 +267,7 @@ public class Simulation {
 		
 		return pointArray.clone();
 	}
-	
-//		System.out.println("Error.Didnt find a value for the NearEdges!!");
-//		return new NearEdges();
-	
+
 	private Point [][] createGridMatrix(InitObject initObject) {
 		int colsnb=initObject.colsnb;
 		int rowsnb=initObject.rowsnb;

@@ -1,7 +1,5 @@
 package event;
 
-import java.util.PriorityQueue;
-
 import board.Individual;
 import numberGen.*;
 

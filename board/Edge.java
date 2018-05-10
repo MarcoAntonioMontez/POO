@@ -1,10 +1,21 @@
 package board;
-
-public class Edge implements Cloneable{
+/**
+ * This class is used to represent egdes in our grid.
+ *  These edges have 3 attributes: its cost, and the two points which define the position of the edge.
+ *
+ */
+public class Edge {
 	int cost;
 	Vertice initialVertice;
 	Vertice finalVertice;
 	
+	/**
+	 * There are two constructors, one is used to build the grid and the other is used to update the special cost zones respectively
+	 * This one is for building the grid
+	 * @param cost int which represents the cost of this specific edge
+	 * @param initialVertice vertice representing the starting point of the edge
+	 * @param finalVertice  vertice representing the final point of the edge
+	 */	
 	public Edge(int cost, Vertice initialVertice, Vertice finalVertice) {
 		super();
 		this.cost = cost;
@@ -12,12 +23,19 @@ public class Edge implements Cloneable{
 		this.finalVertice = finalVertice;
 	}
 	
+	/**
+	 * This one is for updating the special cost zones
+	 * @param cost int which represents the cost of this specific edge
+	 * @param initialPoint point representing the starting point of the edge
+	 * @param finalPoint  point representing the final point of the edge
+	 */
 	public Edge(int cost, Point initialPoint, Point finalPoint) {
 		super();
 		this.cost = cost;
 		this.initialVertice = new Vertice(initialPoint.x,initialPoint.y);
 		this.finalVertice = new Vertice(finalPoint.x,finalPoint.y);;
 	}
+	
 	
 	public void setCost(int cost) {
 		this.cost = cost;
@@ -74,11 +92,5 @@ public class Edge implements Cloneable{
 	public String toString() {
 		return "Edge [cost=" + cost + ", initialVertice=" + initialVertice + ", finalVertice=" + finalVertice + "]";
 	}
-
-	public Object clone() throws CloneNotSupportedException
-	    {
-	        return this.clone();
-	    }
-	
 	
 }

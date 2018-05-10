@@ -2,8 +2,6 @@ package event;
 
 import board.*;
 import numberGen.randNum;
-import pec.*;
-import simulation.*;
 
 public class Death extends AbsEvent{
 	static int parameter;

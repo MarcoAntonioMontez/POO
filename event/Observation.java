@@ -17,7 +17,7 @@ public class Observation extends AbsEvent{
 		popSize = sim.individualList.size();
 		bestIndividual = sim.getBestIndividual();
 		if(bestIndividual!=null) {
-			if(bestIndividual.myPoint.equals(sim.grid.finalPoint)) {
+			if(bestIndividual.myPoint.equals(sim.grid.getFinalPoint())) {
 				hitFinalPoint = true;
 			}
 		}

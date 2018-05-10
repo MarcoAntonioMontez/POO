@@ -1,23 +1,43 @@
 package board;
 
-import java.util.*;
-
-import event.*;
-import pec.*;
 import simulation.*;
 import test.InitObject;
 
+/**
+ * @author user
+ *Class grid to store all the information relative to the grid: size of the grid,
+ * starting and finishing points for the simulation, 
+ * all the points in this grid (obstacles included as points with no edges),
+ * max cost of an edge on this grid
+ */
 public class Grid {
 	Simulation sim;
 	int numCol;
 	int numRow;
 	int numEdges;
-	//Podemos fazer um getter
-	public Point initialPoint, finalPoint;
+	Point initialPoint, finalPoint;
 	int cmax;
 	
 	public Point[][] pointArray;
 
+	/**
+	 * Constructor
+	 * @param sim the simulation associated to this grid,
+	 * @param initObject object which contains the information (gotten from the xml) needed to initiate the simulation
+	 * @param pointArray 2D array containing all the points in this grid
+	 */
+	public Grid(Simulation sim, InitObject initObject, Point[][] pointArray) {
+		this.sim=sim;
+		this.numCol = initObject.colsnb;
+		this.numRow = initObject.rowsnb;
+		this.numEdges=(2*numCol*numRow-numCol-numRow);
+		
+		this.pointArray=pointArray;
+		this.initialPoint = pointArray[initObject.xinitial-1][initObject.yinitial-1];
+		this.finalPoint = pointArray[initObject.xfinal-1][initObject.yfinal-1];	
+		this.cmax = this.maxEdge(initObject);
+	}
+	
 	public int getNumCol() {
 		return numCol;
 	}
@@ -30,18 +50,20 @@ public class Grid {
 		return cmax;
 	}
 	
-	public Grid(Simulation sim, InitObject initObject, Point[][] pointArray) {
-		this.sim=sim;
-		this.numCol = initObject.colsnb;
-		this.numRow = initObject.rowsnb;
-		this.numEdges=(2*numCol*numRow-numCol-numRow);
-		
-		this.pointArray=pointArray;
-		this.initialPoint = pointArray[initObject.xinitial-1][initObject.yinitial-1];
-		this.finalPoint = pointArray[initObject.xfinal-1][initObject.yfinal-1];	
-		this.cmax = this.maxEdge(initObject);
+	public Point getInitialPoint() {
+		return initialPoint;
 	}
-
+	
+	public Point getFinalPoint() {
+		return finalPoint;
+	}
+	
+	
+	/**
+	 * Method used to calculate which is the edge with the highest cost in this grid
+	 * @param initObject object containing information from xml
+	 * @return cmax, an int wihch contains the highest value of an edge
+	 */
 	private int maxEdge(InitObject initObject) {
 		int cmax=0;
 		
@@ -52,9 +74,14 @@ public class Grid {
 		}
 		
 		return cmax;
-	}
+	}	
 	
 	
+	/**
+	 * Method used to represent the full grid as a string
+	 * @param pointArray the 2D array containing all the points in this grid
+	 * @return str, string with all the points concatenated
+	 */
 	private String arrayToString(Point[][] pointArray){
 		String str="";
 		for(int i=0;i<numCol;i++) {

@@ -7,10 +7,7 @@ import org.xml.sax.helpers.*;
 import java.io.File;
 
 import board.*;
-import event.*;
 import simulation.*;
-import pec.*;
-import numberGen.*;
 
 public class Main extends DefaultHandler{
 	static String fileName;
@@ -116,10 +113,8 @@ public class Main extends DefaultHandler{
 		 System.out.print("\n\n");
 		 
 		 Simulation sim = new Simulation(initObject);
-		 EventPec pec = sim.getEventPec();
 		 
 		 sim.simulate();
-
 	 
 	}
 }

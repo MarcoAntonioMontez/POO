@@ -1,7 +1,7 @@
 package board;
 
 /**
- * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
  * 
  * Class containing all the information about Vertice, which is a generic node of the grid.
  * This class only contains the coordinates of the node.

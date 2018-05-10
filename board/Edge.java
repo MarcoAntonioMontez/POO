@@ -1,10 +1,10 @@
 package board;
 
 /**
- * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
  * 
  * This class is used to represent egdes in our grid.
- *  These edges have 3 attributes: its cost, and the two points which define the position of the edge.
+ *  These edges have 3 attributes: its cost, and the two points which define the position of the Edge.
  */
 public class Edge {
 	int cost;

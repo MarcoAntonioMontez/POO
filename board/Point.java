@@ -1,12 +1,12 @@
 package board;
 
 /**
- * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
  * 
- * Class containing all the information about a point.
- * Point extends Vertice since vertice only contains the coordinates of a node on the grid and Point extends vertice by having edges.
+ *Class containing all the information about a point.
+ * Point extends Vertice since Vertice only contains the coordinates of a node on the grid and Point extends Vertice by having edges.
  * int x and int y are the position of this point on the grid.
- *  nearEdges is an instance of NearEdges where all the information about the edges of this point is stored.
+ *  nearEdges is an instance of NearEdges where all the information about the edges of this Point is stored.
  */
 public class Point extends Vertice {
 	int x;

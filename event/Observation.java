@@ -2,6 +2,13 @@ package event;
 
 import board.Individual;
 
+
+/**
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
+ *
+ * Class that contains all information on Event Observation.
+ * 
+ */
 public class Observation extends AbsEvent{
 	int nEvents;
 	int popSize;

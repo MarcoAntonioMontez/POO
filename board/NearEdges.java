@@ -1,7 +1,8 @@
 package board;
 
 /**
- * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
+ * 
  * Class containing the information about the edges of a point.
  * These edges are hard set to: up, right, down and left.
  */

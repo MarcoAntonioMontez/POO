@@ -3,6 +3,11 @@ package event;
 import board.Individual;
 import numberGen.*;
 
+/**
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
+ *
+ *
+ */
 public class Reproduction extends AbsEvent{
 	static int parameter;
 	

@@ -1,14 +1,25 @@
 package board;
 
-public class NearEdges  implements Cloneable{
-	//Esta bem
+/**
+ * Class containing the information about the edges of a point.
+ * These edges are hard set to: up, right, down and left.
+ */
+
+public class NearEdges{
 	public Edge upEdge=null;
 	public Edge rightEdge=null;
 	public Edge downEdge=null;
-	public Edge leftEdge=null;
+	public Edge leftEdge=null;	
 	
 	public NearEdges(){
 		
+	}
+	
+	public NearEdges(Edge upEdge,Edge rightEdge,Edge downEdge,Edge leftEdge){
+		this.upEdge=upEdge;
+		this.rightEdge=rightEdge;
+		this.downEdge=downEdge;
+		this.leftEdge=leftEdge;
 	}
 	
 	public boolean isNull() {
@@ -18,12 +29,6 @@ public class NearEdges  implements Cloneable{
 		return false;
 	}
 	
-	public NearEdges(Edge upEdge,Edge rightEdge,Edge downEdge,Edge leftEdge){
-		this.upEdge=upEdge;
-		this.rightEdge=rightEdge;
-		this.downEdge=downEdge;
-		this.leftEdge=leftEdge;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -71,8 +76,4 @@ public class NearEdges  implements Cloneable{
 				+ leftEdge + "]";
 	}
 	
-	public Object clone() throws CloneNotSupportedException
-    {
-        return this.clone();
-    }
 }

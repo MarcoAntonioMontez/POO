@@ -139,7 +139,7 @@ public class Individual implements Cloneable{
 	
 	
 	/**
-	 * 
+	 * Method to used to update the comfort of this individual
 	 */
 	private void updateComfort() {
 		double a=0;
@@ -147,18 +147,21 @@ public class Individual implements Cloneable{
 		float c=0;
 		
 		a=(1-((double)costPath-(double)lengthPath+2)/(((double)sim.grid.getCmax()-1)*(double)lengthPath+3));
-		//System.out.print("\n\n costPath "+ costPath+ " lengthPath "+ lengthPath + " cmax " + sim.grid.getCmax()+ "a=" + a );
 		a=Math.pow(a,sim.getK());
 				
 		b=(1-((double)this.distFinalPoint())/((double)sim.grid.getNumCol()+(double)sim.grid.getNumRow()+1));
 		b=Math.pow(b,sim.getK());
 		
-		//System.out.print("\n\n a=" + a +"\nb=" + b);
 		c=(float)(a*b);
 		
 		this.comfort=c;
 	}
 	
+	/**
+	 * Method used to calculate the distance between this individual and the final point
+	 * The distance is calculated with norm 1 (absolute value).
+	 * @return dist, an integer because the distance will only be measured in number of edges.
+	 */
 	public int distFinalPoint() {
 		int dist=0;
 		Point finalPoint=sim.grid.getFinalPoint();
@@ -168,6 +171,11 @@ public class Individual implements Cloneable{
 		return dist;
 	}
 	
+	/**
+	 * Method used to determine the relative direction of a point to this individual (up, right, down, left).
+	 * @param p2 point we have to locate
+	 * @return String containing the direction hardcoded.
+	 */
 	public String direction(Point p2) {
 		Point p1=myPoint;
 		if(p2==null)
@@ -188,6 +196,11 @@ public class Individual implements Cloneable{
 		return null;
 	}
 	
+	/**
+	 * Method used to determine the point this individual will end up in after a move in a specific direction.
+	 * @param str a string containing the direction relative to this individual (up, right, down, left).
+	 * @return Point, directly upwards, to the right, downwards or to the left of this individual. Only depends on the param str and this individual's position.
+	 */
 	public Point getNextPoint(String str) {
 		if(str.equals("up")) {
 			if(myPoint.nearEdges.upEdge!=null) {
@@ -209,6 +222,11 @@ public class Individual implements Cloneable{
 	return null;
 	}
 	
+	/**
+	 * Method used to remove the most recent point in this individual's path.
+	 * Will also update the cost and length of this individual's path.
+	 * @return boolean, true if a point was removed and false if path was empty.
+	 */
 	public boolean removePointPath() {
 		String str="";
 		if(path==null) {
@@ -218,7 +236,6 @@ public class Individual implements Cloneable{
 
 		Point aux=path.pop();
 		if(path.isEmpty()) {
-			//System.out.println("\nCannot remove lastPoint from Path!\n");
 			path.add(aux);
 			return false;
 		}
@@ -247,6 +264,12 @@ public class Individual implements Cloneable{
 		return true;
 	}
 	
+	/**
+	 * Method used to identify and add a point to this individual's path.
+	 * Will also update path's cost and length,  and update myPoint of this individual.
+	 * @param str, a string containing the relative direction (up, right, down, left) to this individual, of the point we have to add the path
+	 * @return boolean, true if a point was added to this individual's path, and false if there was no edge in the specified direction.
+	 */
 	public boolean addPointPath(String str) {
 		Point newPoint;
 		
@@ -260,7 +283,6 @@ public class Individual implements Cloneable{
 				 while(!path.peek().equals(newPoint)){
 					 this.removePointPath();
 				 }
-				//System.out.println("Ciclo no Path!!");
 				return true;
 				}
 			 else {
@@ -282,7 +304,6 @@ public class Individual implements Cloneable{
 				 while(!path.peek().equals(newPoint)){
 					 this.removePointPath();
 				 }
-				//System.out.println("\nCiclo no Path!!");
 				return true;
 				}
 			 else {
@@ -304,7 +325,6 @@ public class Individual implements Cloneable{
 				 while(!path.peek().equals(newPoint)){
 					 this.removePointPath();
 				 }
-				//System.out.println("\nCiclo no Path!!");
 				return true;
 				}
 			 else {
@@ -325,7 +345,6 @@ public class Individual implements Cloneable{
 					 while(!path.peek().equals(newPoint)){
 						 this.removePointPath();
 					 }
-					//System.out.println("\nCiclo no Path!!");
 					return true;
 					}
 				 else {
@@ -340,10 +359,19 @@ public class Individual implements Cloneable{
 	return false;
 	}
 	
+	/**
+	 * Method used to pop the stack (public, for other packages). 
+	 * @return Point popped
+	 */
 	public Point pollPath() {
 		return path.pop();
 	}
 	
+	/**
+	 * Method used to determine if a point is already in this individual's path.
+	 * @param point to identify.
+	 * @return boolean, true if point is path, otherwise false.
+	 */
 	private boolean isPointInList(Point point) {
 		
 		for(Point auxPoint: path) {
@@ -353,31 +381,11 @@ public class Individual implements Cloneable{
 		}	
 		return false;
 	}
-	
-	public void die(){
-	////???????????????////
-	}
-	
-	public void updateComfort(int comfort){
-		this.comfort=comfort;
-	}
-	
-	
-	public boolean checkNumIndividuals(int max_individuals){
-	//Não acho que esta função seja aqui	
-	return false;
-	}
-	
-	
-	
-	private String pathString() {
-		String str="";
-		for(Point auxPoint: path) {
-			str=str+auxPoint.toString()+"\n\n";
-		}	
-		return str;
-	}
-	
+		
+	/**
+	 * Method used to concatenate this individual's path into a string (is used for observations).
+	 * @return string containing path.
+	 */
 	public String verticePathString() {
 		String str="{";
 		
@@ -391,14 +399,5 @@ public class Individual implements Cloneable{
 		
 		return str+"}";
 	}
-
-	@Override
-	public String toString() {
-		return "Individual [myPoint=" + myPoint + ",\n\n path=" + pathString() + "comfort=" + this.getComfort() + ", costPath=" + costPath +"\nlengthPath "+lengthPath
-				+ "]";
-	}
-	
-	
-	
 	
 }

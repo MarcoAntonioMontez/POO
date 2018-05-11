@@ -11,7 +11,9 @@ import simulation.*;
 
 /**
  * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
- * 
+ */
+
+/**
  * Class Main. Used to read the XML file, fill the InitObject and run the 
  * simulation.
  *  

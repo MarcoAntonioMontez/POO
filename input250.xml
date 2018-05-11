@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE simulation SYSTEM "simulation.dtd">
 <simulation finalinst="6000" initpop="50" maxpop="200" comfortsens="1"> 
    <grid colsnb="250" rowsnb="250"/> 
    <initialpoint xinitial="1" yinitial="1"/> 

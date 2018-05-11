@@ -69,7 +69,7 @@ public class Vertice {
 	
 	/**
 	 * Self-explanatory.
-	 * @param obj
+	 * @param obj object to be tested
 	 * @return boolean
 	 */
 	public boolean equalsPoint(Object obj) {

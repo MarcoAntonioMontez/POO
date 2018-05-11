@@ -1,7 +1,7 @@
 package pec;
 
 /**
- * @author nยบ 78508 Marco Montez, nยบ 79021 Tomรกs Cordovil, nยบ 78181 Joรฃo Alves.
+ * @author nบ 78508 Marco Montez, nบ 79021 Tomแs Cordovil, nบ 78181 Joใo Alves.	
  */
 
 /**

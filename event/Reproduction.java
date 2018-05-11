@@ -6,7 +6,8 @@ import numberGen.*;
 /**
  * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
  *
- *
+ * Class that contains all information on Event reproduction.
+ * parameter is an int associated with the evolution rate of Reproduction.
  */
 public class Reproduction extends AbsEvent{
 	static int parameter;
@@ -15,22 +16,23 @@ public class Reproduction extends AbsEvent{
 		super(time,individual);
 	}
 	
+	/**
+	 * Implementation of the abstract method. In this case, it creates a new Individual with the method createSon (only 90% of parent's path + comfort).
+	 * It will then create 3 new Event (Death, Move and Reproduction and associate them with the son.
+	 * Finally, it also reschedules the father's reproduction.
+	 * Events are added to the pec and the new Individual is added to the list of individuals in Simulation.
+	 * All costs and lenghts of paths are updated.
+	 * If the son's Event 's (Move and Reproduction) are not added to the pec (not permitted: after Death Event), then, the son is not added to individual's list 
+	 * and simply discarded.
+	 */
 	public void simulateEvent() {
 		Individual son = individual.createSon();
 		Move move= new Move(time,son);
 		move.time=move.getNextTime();
-		Reproduction reproduction = new Reproduction(this.getNextTime(),son);
-		
+		Reproduction reproduction = new Reproduction(this.getNextTime(),son);		
 		Death death= new Death(time,son);
-		death.time=death.getNextTime();
-		
+		death.time=death.getNextTime();		
 		Reproduction myReproduction = new Reproduction(this.getNextTime(),this.getIndividual());
-		/////Debug values
-//		move.time=4.0f;
-//		reproduction.time=3.0f;
-//		death.time=20.0f;
-//		myReproduction.time=6.0f;
-		///////
 		
 		if(myReproduction.initCheck()) {
 			sim.getEventPec().add(myReproduction);
@@ -55,6 +57,12 @@ public class Reproduction extends AbsEvent{
 		
 	}
 	
+	/**
+	 * Method used to generate the intial population for this simulation.
+	 * Only generates one Indivdual at a time.
+	 * It will generate initPop (int) individuals and add their respective Event 's to the pec.
+	 * All Indivduals generated are a copy of a blank Individual which only has myPoint set to initialPoint.
+	 */
 	public void generateFirstPopulation() {
 		Individual son = individual.createSon();
 		Move move= new Move(time,son);
@@ -62,9 +70,6 @@ public class Reproduction extends AbsEvent{
 		Reproduction reproduction = new Reproduction(this.getNextTime(),son);
 		Death death= new Death(time,son);
 		death.time=death.getNextTime();
-//		move.time=2.0f;
-//		reproduction.time=1.0f;
-//		death.time=3.0f;
 		
 		if(death.initCheck()) {
 			sim.getEventPec().add(death);
@@ -84,8 +89,10 @@ public class Reproduction extends AbsEvent{
 		}
 	}
 	
+	/**
+	 * Implementation of the abstract method. In this case it will check if this Event is not being added after Death or after finalInst.
+	 */
 	public boolean initCheck(){
-		//System.out.print("\n\nTime eventRepro " + time + " death time "+ sim.getEventPec().returnDeathTime(this.getIndividual()));
 		if( this.time>=sim.getFinalInst()) {
 			return false;
 		}
@@ -97,6 +104,9 @@ public class Reproduction extends AbsEvent{
 		return false;
 	}
 	
+	/**
+	 * Implementation of the abstract method. Generates a new time for this Reproduction based on this Individual 's comfort and Reproduction 's parameter.
+	 */
 	@Override
 	public float getNextTime() {
 		float meanValue=0;
@@ -104,20 +114,34 @@ public class Reproduction extends AbsEvent{
 		return (this.time+randNum.expRandom(meanValue));
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @param par
+	 */
 	public static void setParameter(int par) {
 		parameter=par;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 */
 	public int getParameter() {
 		return parameter;
 	}
 
+	/**
+	 * Self-explanatory.
+	 */
 	@Override
 	public String toString() {
 		return "Reproduction [time=" + time + "] parameter=["+parameter+"]\n" + individual;
 	}
 
+	/**
+	 * Shortened version of toString method. Used for debug.
+	 */
 	public String toStringMini() {
 		return "Reproduction [time=" + time + "]  " + individual.myPoint.verticeToString();
 	}
+
 }

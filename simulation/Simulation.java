@@ -8,24 +8,39 @@ import test.*;
 import event.*;
 
 /**
- * Simulates the all the events needed for this simulation
- * 
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
  *
+ * Class that contains all information on Simulation.
+ * finalInst is an int which stores the instant in which the simulation should end.
+ * initPopul is an int which stores the number of Individual with which the Simulation starts.
+ * maxPopulation is an int which stores the maximum number of Individual for this Simulation.
+ * k is an int which stores comfort sensibility.
+ * iteration is an int which stores the number of Event which have occurred until the present instant.
+ * grid is the associated grid.
+ * pec is the associated list of Event.
+ * numIndividuals is an int which stores the present number of alive Individual.
+ * individualList is a LinkedList of Individual which stores all the alive Individual.
+ * bestIndividual stores a copy of the best Individual until now.
  */
 public class Simulation {
 	int finalInst;
 	int initPopul;
 	int maxPopulation;
 	int k;
-	int iteration=1;
+	int iteration=0;
 	public Grid grid;
-	int currentTime;
-	int currentEvent;
 	EventPec pec;
 	int numIndividuals;
 	public LinkedList<Individual> individualList = new LinkedList<Individual>();
 	Individual bestIndividual=null;
 	
+	/**
+	 * Constructor. Accesses InitObject to set parameters.
+	 * Creates an associated grid. Updates special cost zones.
+	 * Creates an empty pec.
+	 * Sets the parameters for the Events.
+	 * @param initObject
+	 */
 	public Simulation(InitObject initObject){
 		this.finalInst=initObject.finalinst;
 		this.initPopul=initObject.initpop;
@@ -42,36 +57,33 @@ public class Simulation {
 		this.initEvents(initObject);	
 	}
 	
+	/**
+	 * Method used to go through the pec, reading Events and simulating them until pec is empty.
+	 * Constantly updates iteration.
+	 * Constantly checks if number of Individual has not reached maxPop yet. If so, launches an epidemic.
+	 */
 	public void simulate(){
 		this.popGenesis();
-//		System.out.print("\n\nInitial Pec " + pec.miniToString());
-//		System.out.print("\n\nInitial List of Individuals " + this.individualListToString());
 		AbsEvent event;
 		iteration=1;
 		
 		while(!pec.isNull()) {
-//			System.out.print("\n\n-----Iteration: " + iteration+"----\n\n");
 			event=this.getNextEvent();
 			event.simulateEvent();
 			
-
-			
-//			System.out.print("\n\nPec " + pec.miniToString());
-//			System.out.print("\n\nList of Individuals " + this.individualListToString());
 			iteration++;
 			
 			if(this.individualList.size()>=this.maxPopulation) {
-//				System.out.print("\n\nEPIDEMIC!!!!!!!!!!!\n\n");
 				epidemic();
-//				System.out.print("\n\nList of Individuals " + this.individualListToString());
 			}
-		}
-		
-//		System.out.print("\n\nEnd of simulation\n " + pec.miniToString());
-//		System.out.print("\n\nPec " + pec.miniToString());
-//		System.out.print("\n\nList of Individuals " + this.individualListToString());		
+		}	
 	}
 	
+	/**
+	 * Method used to populate Simulation with the initial population.
+	 * Adds individuals to list of individuals and respective Events to the the pec.
+	 * Creates Observations and adds them to the pec.
+	 */
 	public void popGenesis() {
 		Individual adam = new Individual(this,this.grid.getInitialPoint());
 		Reproduction firstReproduction = new Reproduction(0.0f,adam);
@@ -89,18 +101,34 @@ public class Simulation {
 		getEventPec().add(aux);
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return
+	 */
 	public float getFinalInst() {
 		return (float)this.finalInst;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return
+	 */
 	public int getIterations() {
 		return iteration;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return
+	 */
 	public int getNumIndividuals() {
 		return numIndividuals;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return
+	 */
 	public Individual getBestIndividual() {
 		if(bestIndividual == null)
 			return null;
@@ -108,14 +136,27 @@ public class Simulation {
 		return new Individual(bestIndividual);
 	}
 	
+	/**
+	 * Method used to pop one Event from the pec. Always first Event in pec is popped.
+	 * @return
+	 */
 	public AbsEvent getNextEvent() {
 		return pec.removeFirst();
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @param individual
+	 */
 	public void setBestIndividual(Individual individual) {
 		bestIndividual = new Individual(individual);
 	}
 	
+	/**
+	 * Method used to check if an Individual is "better" than the current bestIndividual.
+	 * @param individual
+	 * @return
+	 */
 	public boolean checkBestIndividual(Individual individual) {
 		if(bestIndividual == null)
 			return true;
@@ -138,6 +179,10 @@ public class Simulation {
 		return false;
 	}
 	
+	/**
+	 * Method used to concatenate the list of individuals into a string. Used for debug purposes.
+	 * @return
+	 */
 	public String individualListToString(){	
 		if(individualList.isEmpty()) {
 			return null;
@@ -149,10 +194,19 @@ public class Simulation {
 		return str;
 	}
 	
+	/**
+	 * Method used to add individuals to the list of individuals.
+	 * @param individual
+	 */
 	public void addIndividual(Individual individual) {
 		individualList.add(individual);
 	}
 	
+	/**
+	 * Method which implements epidemic (as described in project requirements)
+	 * Will save the 5 individuals with most comfort. All other individuals have (comfort*100)% chance of survival.
+	 * It uses a Comparator to compare comforts.
+	 */
 	public void epidemic() {
 		 Individual aux;
 		 Random random = new Random();
@@ -191,6 +245,10 @@ public class Simulation {
 		 individualList=tempList;
 	}
 	
+	/**
+	 * Method used to set parameters of Events (Death, Move and reproduction).
+	 * @param initObject
+	 */
 	private void initEvents(InitObject initObject) {
 		AbsEvent.setSim(this);	
 		Death.setParameter(initObject.death);
@@ -198,18 +256,44 @@ public class Simulation {
 		Reproduction.setParameter(initObject.reproduction);
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return
+	 */
 	public EventPec getEventPec() {
 		return pec;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return
+	 */
 	public int getK() {
 		return k;
 	}
 	
+	/**
+	 * Self-explanatory.
+	 * @return
+	 */
+	public int getMaxPop(){
+		return maxPopulation;
+	}
+	
+	/**
+	 * Self-explanatory.
+	 * @param i
+	 */
 	public void setIteration(int i) {
 		iteration = i;
 	}
 
+	/**
+	 * Method to check if a point is in a linkedList.
+	 * @param point
+	 * @param pointList
+	 * @return
+	 */
 	private boolean isPointInList(Point point,LinkedList<Point> pointList) {
 		
 		for(Point auxPoint: pointList) {
@@ -220,6 +304,14 @@ public class Simulation {
 		return false;
 	}
 	
+	/**
+	 * Method used to update special cost zones.
+	 * Special cost zones are defined as Edge since an Edge has a starting point, a final point and a cost.
+	 * This method will then convert the two points into the Edges associated with this zone and update their cost to be equal to the special zone's cost.
+	 * @param pointArray
+	 * @param specialZoneList
+	 * @return
+	 */
 	private Point [][] updateCostZones(Point[][] pointArray,LinkedList<Edge> specialZoneList){
 		int x1,x2,y1,y2;
 		int x,y;
@@ -232,11 +324,9 @@ public class Simulation {
 			y1=edge.getInicialVertice().gety();
 			y2=edge.getFinalVertice().gety();
 			
-			//System.out.println("\n"+edge);
 			
 			for(x=x1;x<=x2;x++) {
 				for(y=y1;y<=y2;y++) {
-					//System.out.println("x="+x+"y="+y);
 					
 					point=pointArray[x-1][y-1];
 					
@@ -268,6 +358,12 @@ public class Simulation {
 		return pointArray.clone();
 	}
 
+	/**
+	 * Method used to create the grid where the simulation will happen.
+	 * The grid is defined as a 2D array of point, each containing respective edges and coordinates.
+	 * @param initObject
+	 * @return
+	 */
 	private Point [][] createGridMatrix(InitObject initObject) {
 		int colsnb=initObject.colsnb;
 		int rowsnb=initObject.rowsnb;
@@ -276,7 +372,6 @@ public class Simulation {
 		
 		for(int i=0;i<colsnb;i++) {
 			for(int j=0;j<rowsnb;j++) {
-				//Se existir um obstaculo, o point fica a null
 				pointArray[i][j]=new Point(i+1,j+1,fillNearEdges(initObject,i,j));
 				
 				if(isPointInList(new Point(i+1,j+1),initObject.obstacles)) {
@@ -286,14 +381,16 @@ public class Simulation {
 		}
 		return pointArray;
 	}
-	
-	
 
-	public int getMaxPop(){
-		return maxPopulation;
-	}
-	
-	//Por a private depois de test
+	/**
+	 * Method used to fill the edges of the grid based on their position on the grid and the obstacles.
+	 * For example, if a point is in position (1,1) it will only have a down edge and a right edge.
+	 * Obstacles do not have any edges. They do not differ from regular points in any other way.
+	 * @param initObject
+	 * @param _i
+	 * @param _j
+	 * @return
+	 */
 	private NearEdges fillNearEdges(InitObject initObject, int _i, int _j) {
 		NearEdges nearEdges;
 		int colsnb=initObject.colsnb;
@@ -433,6 +530,11 @@ public class Simulation {
 		}
 	}	
 	
+	/**
+	 * Method used to remove a specific individual from the list of individuals.
+	 * Also updates numIndividuals.
+	 * @param individual
+	 */
 	public void removeAndUpdateList(Individual individual) {
 		this.individualList.remove(individual);
 		this.numIndividuals--;

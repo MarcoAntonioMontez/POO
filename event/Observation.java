@@ -2,10 +2,11 @@ package event;
 
 import board.Individual;
 
-
 /**
  * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
- *
+ */
+
+/**
  * Class that contains all information on Event Observation.
  * int nEvents stores total number of events until now.
  * int popSize stores the number of alive individuals.

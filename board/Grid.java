@@ -4,8 +4,10 @@ import simulation.*;
 import test.InitObject;
 
 /**
- * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
- * 
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
+ */
+
+/**
  * Class grid to store all the information relative to the grid: size of the grid,
  * starting and finishing points for the simulation, 
  * all the points in this grid (obstacles included as points with no edges),

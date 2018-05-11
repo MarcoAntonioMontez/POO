@@ -6,7 +6,9 @@ import simulation.*;
 
 /**
  * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
- *
+ */
+
+/**
  * Abstract class which contains common information to all Events.
  * sim is the associated simulation.
  * pec is the associated list of events.
@@ -44,7 +46,7 @@ public abstract class AbsEvent implements Comparable<AbsEvent>, IEvent {
 	
 	/**
 	 * Generic "get int" to reschedule this generic event.
-	 * @return
+	 * @return float time
 	 */
 	abstract public float getNextTime();
 	

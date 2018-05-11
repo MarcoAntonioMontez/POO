@@ -4,8 +4,10 @@ import java.util.*;
 import simulation.*;
 
 /**
- * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
- * 
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
+ */
+
+/**
  * Class used to store all the information concerning an individual. * 
  * sim is the associated simulation.
  * myPoint is the current position of this individual.

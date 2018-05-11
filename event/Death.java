@@ -5,7 +5,9 @@ import numberGen.randNum;
 
 /**
  * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
- *
+ */
+
+/**
  * Class that contains all information on Event Death.
  * parameter is an int associated with the evolution rate of all events of type Death.
  */

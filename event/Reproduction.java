@@ -4,8 +4,10 @@ import board.Individual;
 import numberGen.*;
 
 /**
- * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.
- *
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
+ */
+
+/**
  * Class that contains all information on Event reproduction.
  * parameter is an int associated with the evolution rate of Reproduction.
  */

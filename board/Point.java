@@ -2,7 +2,9 @@ package board;
 
 /**
  * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
- * 
+ */
+
+/**
  *Class containing all the information about a point.
  * Point extends Vertice since Vertice only contains the coordinates of a node on the grid and Point extends Vertice by having edges.
  * int x and int y are the position of this point on the grid.

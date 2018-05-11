@@ -9,7 +9,9 @@ import event.*;
 
 /**
  * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
- *
+ */
+
+/**
  * Class that contains all information on Simulation.
  * finalInst is an int which stores the instant in which the simulation should end.
  * initPopul is an int which stores the number of Individual with which the Simulation starts.
@@ -39,7 +41,7 @@ public class Simulation {
 	 * Creates an associated grid. Updates special cost zones.
 	 * Creates an empty pec.
 	 * Sets the parameters for the Events.
-	 * @param initObject
+	 * @param initObject object which contains all needed info to this simulation
 	 */
 	public Simulation(InitObject initObject){
 		this.finalInst=initObject.finalinst;
@@ -103,7 +105,7 @@ public class Simulation {
 	
 	/**
 	 * Self-explanatory.
-	 * @return
+	 * @return int finalInst.
 	 */
 	public float getFinalInst() {
 		return (float)this.finalInst;
@@ -111,7 +113,7 @@ public class Simulation {
 	
 	/**
 	 * Self-explanatory.
-	 * @return
+	 * @return int iteration.
 	 */
 	public int getIterations() {
 		return iteration;
@@ -119,7 +121,7 @@ public class Simulation {
 	
 	/**
 	 * Self-explanatory.
-	 * @return
+	 * @return int numIndividuals
 	 */
 	public int getNumIndividuals() {
 		return numIndividuals;
@@ -127,7 +129,7 @@ public class Simulation {
 	
 	/**
 	 * Self-explanatory.
-	 * @return
+	 * @return Individual bestIndividual
 	 */
 	public Individual getBestIndividual() {
 		if(bestIndividual == null)
@@ -138,7 +140,7 @@ public class Simulation {
 	
 	/**
 	 * Method used to pop one Event from the pec. Always first Event in pec is popped.
-	 * @return
+	 * @return Event next event to occur
 	 */
 	public AbsEvent getNextEvent() {
 		return pec.removeFirst();
@@ -146,7 +148,7 @@ public class Simulation {
 	
 	/**
 	 * Self-explanatory.
-	 * @param individual
+	 * @param individual Individual to be set as new best
 	 */
 	public void setBestIndividual(Individual individual) {
 		bestIndividual = new Individual(individual);
@@ -154,8 +156,8 @@ public class Simulation {
 	
 	/**
 	 * Method used to check if an Individual is "better" than the current bestIndividual.
-	 * @param individual
-	 * @return
+	 * @param individual Individual to be checked
+	 * @return boolean, true if this is new best, flase otherwise
 	 */
 	public boolean checkBestIndividual(Individual individual) {
 		if(bestIndividual == null)
@@ -181,7 +183,7 @@ public class Simulation {
 	
 	/**
 	 * Method used to concatenate the list of individuals into a string. Used for debug purposes.
-	 * @return
+	 * @return String
 	 */
 	public String individualListToString(){	
 		if(individualList.isEmpty()) {
@@ -196,7 +198,7 @@ public class Simulation {
 	
 	/**
 	 * Method used to add individuals to the list of individuals.
-	 * @param individual
+	 * @param individual Individual to be added to list
 	 */
 	public void addIndividual(Individual individual) {
 		individualList.add(individual);
@@ -247,7 +249,7 @@ public class Simulation {
 	
 	/**
 	 * Method used to set parameters of Events (Death, Move and reproduction).
-	 * @param initObject
+	 * @param initObject object containing all necessary info for this simulation
 	 */
 	private void initEvents(InitObject initObject) {
 		AbsEvent.setSim(this);	
@@ -258,7 +260,7 @@ public class Simulation {
 	
 	/**
 	 * Self-explanatory.
-	 * @return
+	 * @return pec
 	 */
 	public EventPec getEventPec() {
 		return pec;
@@ -266,7 +268,7 @@ public class Simulation {
 	
 	/**
 	 * Self-explanatory.
-	 * @return
+	 * @return int k (comfort sensibility)
 	 */
 	public int getK() {
 		return k;
@@ -274,7 +276,7 @@ public class Simulation {
 	
 	/**
 	 * Self-explanatory.
-	 * @return
+	 * @return int maxPopulation
 	 */
 	public int getMaxPop(){
 		return maxPopulation;
@@ -282,7 +284,7 @@ public class Simulation {
 	
 	/**
 	 * Self-explanatory.
-	 * @param i
+	 * @param i new value for iterations
 	 */
 	public void setIteration(int i) {
 		iteration = i;
@@ -290,9 +292,9 @@ public class Simulation {
 
 	/**
 	 * Method to check if a point is in a linkedList.
-	 * @param point
-	 * @param pointList
-	 * @return
+	 * @param point Point to be tested
+	 * @param pointList List to search
+	 * @return boolean, true if point is in list, false otherwise.
 	 */
 	private boolean isPointInList(Point point,LinkedList<Point> pointList) {
 		
@@ -308,9 +310,9 @@ public class Simulation {
 	 * Method used to update special cost zones.
 	 * Special cost zones are defined as Edge since an Edge has a starting point, a final point and a cost.
 	 * This method will then convert the two points into the Edges associated with this zone and update their cost to be equal to the special zone's cost.
-	 * @param pointArray
-	 * @param specialZoneList
-	 * @return
+	 * @param pointArray grid
+	 * @param specialZoneList list of edges representing special cost zones
+	 * @return Point[][] grid with updated costs
 	 */
 	private Point [][] updateCostZones(Point[][] pointArray,LinkedList<Edge> specialZoneList){
 		int x1,x2,y1,y2;
@@ -361,8 +363,8 @@ public class Simulation {
 	/**
 	 * Method used to create the grid where the simulation will happen.
 	 * The grid is defined as a 2D array of point, each containing respective edges and coordinates.
-	 * @param initObject
-	 * @return
+	 * @param initObject object containing all necessary info for this simulation
+	 * @return Point[][] grid
 	 */
 	private Point [][] createGridMatrix(InitObject initObject) {
 		int colsnb=initObject.colsnb;
@@ -387,9 +389,9 @@ public class Simulation {
 	 * For example, if a point is in position (1,1) it will only have a down edge and a right edge.
 	 * Obstacles do not have any edges. They do not differ from regular points in any other way.
 	 * @param initObject
-	 * @param _i
-	 * @param _j
-	 * @return
+	 * @param _i coordinate which needs correction (this grid starts at (1,1) not (0,0))
+	 * @param _j coordinate which needs correction (this grid starts at (1,1) not (0,0))
+	 * @return NearEdges, object containing edges of a Point
 	 */
 	private NearEdges fillNearEdges(InitObject initObject, int _i, int _j) {
 		NearEdges nearEdges;
@@ -533,7 +535,7 @@ public class Simulation {
 	/**
 	 * Method used to remove a specific individual from the list of individuals.
 	 * Also updates numIndividuals.
-	 * @param individual
+	 * @param individual Individual to be removed
 	 */
 	public void removeAndUpdateList(Individual individual) {
 		this.individualList.remove(individual);

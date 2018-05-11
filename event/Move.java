@@ -6,8 +6,10 @@ import java.util.*;
 
 
 /**
- * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.  
- *
+ * @author nº 78508 Marco Montez, nº 79021 Tomás Cordovil, nº 78181 João Alves.		
+ */
+
+/**
  * Class in which all information about Move Event is stored. 
  * parameter is an int associated with the evolution rate of all events of type Move.
  */
@@ -16,8 +18,8 @@ public class Move extends AbsEvent{
 	
 	/**
 	 * Constructor. Self-explanatory.
-	 * @param time
-	 * @param individual
+	 * @param time int
+	 * @param individual Individual
 	 */
 	public Move(float time,Individual individual ){
 		super(time,individual);
@@ -83,7 +85,7 @@ public class Move extends AbsEvent{
 	
 	/**
 	 * Self-explanatory.
-	 * @param par
+	 * @param par int parameter
 	 */
 	public static void setParameter(int par) {
 		parameter=par;
